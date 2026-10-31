@@ -51,6 +51,7 @@
   --blue:#2F6BFF;
   --gold:#D9A93B;
   --gold-soft:#F3E3B8;
+  --gold-text:#86651A;
   --paper:#F6F7FA;
   --white:#FFFFFF;
   --ink:#0C1830;
@@ -101,14 +102,14 @@ button{font:inherit;color:inherit}
 .hdr .brand{color:var(--navy-800)}
 footer{background:var(--white)!important;color:var(--muted)!important;border-top:1px solid var(--line)}
 footer .brand{color:var(--navy-800)}
-footer .brand-name span{color:#B8892A}
-footer h4{color:var(--navy-800)!important}
-footer a:hover{color:#B8892A!important}
+footer .brand-name span{color:var(--gold-text)}
+footer h4,footer .ft-h{color:var(--navy-800)!important}
+footer a:hover{color:var(--gold-text)!important}
 footer .social a{border-color:var(--line)!important;color:var(--navy-700)}
 footer .legal{border-top-color:var(--line)!important}
 footer .disclaimer{color:var(--muted)!important}
-footer .legal a{color:#B8892A!important}
-.hdr .brand-name span{color:#B8892A}
+footer .legal a{color:var(--gold-text)!important}
+.hdr .brand-name span{color:var(--gold-text)}
 .hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--white);min-width:0}
 .brand img{width:44px;height:44px}
@@ -436,7 +437,7 @@ footer .tag{margin-top:18px;max-width:34ch}
 .tabs{box-shadow:0 10px 24px -20px rgba(10,26,54,.5)}
 .doc-panel{border-radius:20px;padding:0;overflow:hidden;box-shadow:0 30px 60px -44px rgba(10,26,54,.5)}
 .doc-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px 28px;border-bottom:1px solid var(--line);font-family:var(--f-display);font-size:14px;font-weight:600}
-.doc-head b{font-weight:500;font-size:12.5px;color:#9A7420;background:#FBF3DD;border-radius:999px;padding:5px 12px}
+.doc-head b{font-weight:500;font-size:12.5px;color:var(--gold-text);background:#FBF3DD;border-radius:999px;padding:5px 12px}
 .doc-panel ul{padding:6px 28px;gap:0}
 .doc-panel li{padding:14px 0;border-bottom:1px solid var(--line);align-items:center}
 .doc-panel li:last-child{border-bottom:0}
@@ -485,7 +486,7 @@ footer .tag{margin-top:18px;max-width:34ch}
 .flow{min-height:0}
 .flow-alt{margin-top:22px;padding-top:20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;font-size:14.5px;color:var(--muted)}
 .flow-alt a{font-family:var(--f-display);font-weight:600;color:var(--navy-800);text-decoration:none}
-.flow-alt a:hover{color:#B8892A}
+.flow-alt a:hover{color:var(--gold-text)}
 .partners .wrap{grid-template-columns:.85fr 1.15fr}
 @media (max-width:860px){.enq .wrap,.partners .wrap{grid-template-columns:1fr}}
 
@@ -539,7 +540,7 @@ footer .legal{display:grid;gap:0;padding-block:0;font-size:13.5px}
 .calc-in{padding:clamp(22px,3vw,36px);display:grid;gap:24px;align-content:start;min-width:0}
 .ci-group{display:grid;gap:10px;min-width:0}
 .ci-label{font-family:var(--f-display);font-size:13.5px;font-weight:600;color:var(--ink)}
-.ci-label small{font-family:var(--f-body);font-weight:500;color:#9A7420;background:#FBF3DD;border-radius:999px;padding:3px 10px;margin-left:6px;font-size:11.5px}
+.ci-label small{font-family:var(--f-body);font-weight:500;color:var(--gold-text);background:#FBF3DD;border-radius:999px;padding:3px 10px;margin-left:6px;font-size:11.5px}
 .ci-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .ci-box{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:10px;padding:0 12px;height:42px;background:var(--paper);min-width:0}
 .ci-box:focus-within{border-color:var(--navy-700);background:var(--white)}
@@ -608,14 +609,14 @@ footer .legal{display:grid;gap:0;padding-block:0;font-size:13.5px}
 .calc-flow input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--gold) var(--p,50%),var(--line) var(--p,50%));outline:none;margin:4px 0}
 .calc-flow input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--white);border:2px solid var(--gold);box-shadow:0 4px 10px -2px rgba(10,26,54,.35);cursor:pointer}
 .calc-flow input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--white);border:2px solid var(--gold);cursor:pointer}
-.rate-tag{font-family:var(--f-body);font-weight:500;color:#9A7420;background:#FBF3DD;border-radius:999px;padding:3px 10px;margin-left:6px;font-size:11.5px}
+.rate-tag{font-family:var(--f-body);font-weight:500;color:var(--gold-text);background:#FBF3DD;border-radius:999px;padding:3px 10px;margin-left:6px;font-size:11.5px}
 .cres{display:flex;flex-direction:column;gap:14px;flex:1}
 .res{background:radial-gradient(360px 220px at 100% 0%,rgba(217,169,59,.16),transparent 70%),linear-gradient(160deg,var(--navy-700),var(--navy-900));color:var(--on-dark);border-radius:18px;padding:22px 22px 18px;display:grid;gap:12px}
 .res .co-big{font-size:clamp(30px,3.6vw,40px)}
 .res .co-rows div{padding:9px 0;font-size:14px}
 .res .co-low{margin:4px 0 2px}
 .co-nudge2{background:#FBF6E9;border:1px solid #F0DFAE;border-radius:14px;padding:12px 16px;font-size:14px;line-height:1.55;color:var(--ink)}
-.co-nudge2 b{color:#9A7420}
+.co-nudge2 b{color:var(--gold-text)}
 .res-ctas{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}
 .res-ctas .btn{width:100%;height:48px;font-size:14.5px}
 .res-wa{border:1px solid var(--line);color:var(--ink);background:var(--white)}
@@ -629,7 +630,7 @@ footer .legal{display:grid;gap:0;padding-block:0;font-size:13.5px}
 .spot{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:28px;align-items:stretch}
 .sp-list{display:grid;gap:22px;align-content:start}
 .sp-group{display:grid;gap:4px}
-.sp-glabel{font-family:var(--f-display);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#B8892A;margin:0 0 6px 2px}
+.sp-glabel{font-family:var(--f-display);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-text);margin:0 0 6px 2px}
 .sp-item{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;border:1px solid transparent;background:transparent;border-radius:14px;padding:13px 16px;font-family:var(--f-display);font-size:16.5px;font-weight:500;color:var(--ink);cursor:pointer;position:relative;transition:background .25s,border-color .25s,color .25s,padding .25s}
 .sp-item svg{width:16px;height:16px;flex:0 0 16px;opacity:0;transform:translateX(-6px);transition:all .25s;color:var(--gold)}
 .sp-item:hover{background:var(--paper)}
@@ -675,7 +676,7 @@ footer .legal{display:grid;gap:0;padding-block:0;font-size:13.5px}
 /* ===== solutions: private bank columns ===== */
 .svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,4vw,56px);align-items:start}
 .svc-col{display:flex;flex-direction:column;min-width:0}
-.svc-label{font-family:var(--f-display);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#B8892A;padding-bottom:14px;border-bottom:1px solid var(--ink);margin-bottom:4px}
+.svc-label{font-family:var(--f-display);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-text);padding-bottom:14px;border-bottom:1px solid var(--ink);margin-bottom:4px}
 .svc-row{position:relative;display:grid;grid-template-columns:1fr 18px;column-gap:14px;row-gap:4px;align-items:center;width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);padding:20px 10px 20px 0;cursor:pointer;font:inherit;color:inherit;transition:background .3s ease,padding .3s ease}
 .svc-name{font-family:var(--f-display);font-size:18px;font-weight:600;color:var(--ink);letter-spacing:-.01em;transition:color .25s}
 .svc-desc{grid-column:1;font-size:14.5px;line-height:1.5;color:var(--muted)}
@@ -760,7 +761,7 @@ footer .legal{display:grid;gap:0;padding-block:0;font-size:13.5px}
 }
 
 /* ===== eyebrow pills ===== */
-.eyebrow{display:inline-flex;width:max-content;max-width:100%;align-items:center;gap:8px;padding:7px 14px 7px 12px;border-radius:999px;background:rgba(217,169,59,.12);border:1px solid rgba(217,169,59,.35);color:#9A7420;font-size:11.5px;letter-spacing:.14em;line-height:1}
+.eyebrow{display:inline-flex;width:max-content;max-width:100%;align-items:center;gap:8px;padding:7px 14px 7px 12px;border-radius:999px;background:rgba(217,169,59,.12);border:1px solid rgba(217,169,59,.35);color:var(--gold-text);font-size:11.5px;letter-spacing:.14em;line-height:1}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);flex:0 0 6px}
 .lending .eyebrow::after,.process .eyebrow::after{content:none}
 .hero .eyebrow,.lending .eyebrow,.partners .eyebrow,.enq-card .eyebrow{color:var(--gold);background:rgba(217,169,59,.1);border-color:rgba(217,169,59,.4)}
@@ -785,6 +786,13 @@ footer .legal{display:grid;gap:0;padding-block:0;font-size:13.5px}
 .sh-call:hover b{color:var(--gold)}
 @media (max-width:980px){.sh-ctas{margin-top:0}}
 .choice{align-content:start}
+
+/* accessibility fixes */
+footer .ft-h{font-family:var(--f-display);color:var(--navy-800);font-size:14px;font-weight:600;margin:0 0 16px;letter-spacing:.04em}
+.legal-bar a.credit{color:var(--muted)!important;text-decoration:none}
+.legal-bar a.credit span{color:var(--gold-text);font-weight:600}
+.legal-bar a.credit:hover span{color:var(--navy-800)}
+.mbar .wa{background:#15803D}
 </style>
 </head>
 <body>
@@ -1018,22 +1026,22 @@ footer .legal{display:grid;gap:0;padding-block:0;font-size:13.5px}
       </div>
     </div>
     <div>
-      <h4>Solutions</h4>
+      <h3 class="ft-h">Solutions</h3>
       <ul><li><a href="#solutions">Loan Against Property</a></li><li><a href="#solutions">Home Loan</a></li><li><a href="#solutions">Working Capital Loan</a></li><li><a href="#solutions">Project Finance</a></li><li><a href="#solutions">Stress Property Resolution</a></li></ul>
     </div>
     <div>
-      <h4>Company</h4>
+      <h3 class="ft-h">Company</h3>
       <ul><li><a href="#about">About</a></li><li><a href="#why">Why Centurion</a></li><li><a href="#partners">Partner With Us</a></li><li><a href="#faq">FAQs</a></li></ul>
     </div>
     <div>
-      <h4>Contact</h4>
+      <h3 class="ft-h">Contact</h3>
       <ul><li><a href="tel:+919274705844">+91 92747 05844</a></li><li>[Email to be added]</li><li>Ahmedabad · Surat · Vadodara · Rajkot</li></ul>
     </div>
   </div>
   <div class="wrap legal">
     <div class="legal-bar">
       <span class="copy">© 2026 Centurion Strategic Ventures Pvt Ltd. All rights reserved.</span>
-      <span class="credit">Designed and developed by <a href="https://magolabs.in" target="_blank" rel="noopener">Mago Labs</a></span>
+      <a class="credit" href="https://magolabs.in" target="_blank" rel="noopener">Designed And Developed By <span>Mago Labs</span></a>
     </div>
     <div class="legal-fine">
       <span class="reg"><b>CIN</b> U70200GJ2026PTC178120</span><span class="reg"><b>GSTIN</b> 24AANCC8584H1Z6</span>
