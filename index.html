@@ -737,6 +737,54 @@ footer .legal{display:grid;gap:0;padding-block:0;font-size:13.5px}
 .svc-help{margin-top:0;flex:1;align-content:center;border-radius:22px}
 @media (max-width:980px){.svc-col:last-child{grid-column:1 / -1}.svc-help{flex:none}}
 @media (max-width:640px){.svc-head{padding:18px 18px 16px}.svc-head::after{left:18px}.svc-row{padding:16px 16px 16px 18px}.svc-row:hover{padding-left:22px}}
+
+/* ===== solutions: single ordered list ===== */
+.svc{grid-template-columns:minmax(0,2.15fr) minmax(0,.85fr);gap:clamp(18px,2.4vw,28px);align-items:stretch}
+.svc-all{height:100%}
+.svc-2{display:grid;grid-template-columns:1fr 1fr;padding:0}
+.svc-2 .svc-row{border-bottom:1px solid #EEF0F4;padding:22px 22px 22px 26px;align-content:start;align-items:start}
+.svc-2 .svc-go{align-self:center}
+.svc-2 .svc-row:nth-child(odd){border-right:1px solid #EEF0F4}
+.svc-2 .svc-row:nth-last-child(-n+2){border-bottom:0}
+.svc-2 .svc-row:hover,.svc-2 .svc-row:focus-visible{padding-left:30px}
+.svc > .svc-help{margin:0;height:100%;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:32px 30px}
+.svc > .svc-help b{font-size:21px;line-height:1.3}
+.svc > .svc-help span{font-size:15px}
+@media (max-width:980px){.svc{grid-template-columns:1fr}.svc > .svc-help{height:auto}}
+@media (max-width:640px){
+  .svc-2{grid-template-columns:1fr}
+  .svc-2 .svc-row:nth-child(odd){border-right:0}
+  .svc-2 .svc-row:nth-last-child(2){border-bottom:1px solid #EEF0F4}
+  .svc-2 .svc-row{padding:18px 16px 18px 20px}
+  .svc-2 .svc-row:hover{padding-left:24px}
+}
+
+/* ===== eyebrow pills ===== */
+.eyebrow{display:inline-flex;width:max-content;max-width:100%;align-items:center;gap:8px;padding:7px 14px 7px 12px;border-radius:999px;background:rgba(217,169,59,.12);border:1px solid rgba(217,169,59,.35);color:#9A7420;font-size:11.5px;letter-spacing:.14em;line-height:1}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);flex:0 0 6px}
+.lending .eyebrow::after,.process .eyebrow::after{content:none}
+.hero .eyebrow,.lending .eyebrow,.partners .eyebrow,.enq-card .eyebrow{color:var(--gold);background:rgba(217,169,59,.1);border-color:rgba(217,169,59,.4)}
+.sec-head{justify-items:start}
+.lending .sec-head,.process .sec-head{justify-items:center}
+/* ===== advisor card, filled ===== */
+.svc > .svc-help{justify-content:flex-start;gap:0;padding:30px 28px}
+.sh-ic{width:48px;height:48px;border-radius:14px;background:rgba(217,169,59,.12);border:1px solid rgba(217,169,59,.4);display:grid;place-items:center;margin-bottom:20px}
+.sh-ic svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.svc > .svc-help b{font-size:22px;margin-bottom:10px}
+.svc > .svc-help .sh-sub{font-size:15px;color:var(--on-dark-muted);line-height:1.6}
+.sh-list{list-style:none;margin:22px 0 0;padding:20px 0 0;border-top:1px solid var(--line-dark);display:grid;gap:12px}
+.sh-list li{display:flex;align-items:center;gap:12px;font-size:14.5px;color:var(--on-dark)}
+.sh-list i{flex:0 0 22px;width:22px;height:22px;border-radius:50%;background:rgba(217,169,59,.15);display:grid;place-items:center}
+.sh-list i svg{width:12px;height:12px;stroke:var(--gold);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.sh-ctas{display:grid;gap:10px;margin-top:auto;padding-top:26px}
+.sh-ctas .btn{width:100%;height:48px;font-size:14.5px}
+.sh-ghost{border:1px solid rgba(255,255,255,.25);color:var(--white);background:transparent}
+.sh-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.sh-call{margin-top:16px;text-align:center;font-size:13.5px;color:var(--on-dark-muted);text-decoration:none}
+.svc > .svc-help .sh-call b{color:var(--white);font-weight:600;font-size:inherit;margin:0;font-family:inherit}
+.sh-call:hover b{color:var(--gold)}
+@media (max-width:980px){.sh-ctas{margin-top:0}}
+.choice{align-content:start}
 </style>
 </head>
 <body>
@@ -791,7 +839,7 @@ footer .legal{display:grid;gap:0;padding-block:0;font-size:13.5px}
         <h2 class="h2">The right funding, from the people who know banking best.</h2>
       </div>
       <div class="rv">
-        <p class="body">Centurion Strategic Ventures is an Ahmedabad-based loan advisory firm that connects businesses, professionals and families across Gujarat and the rest of India with the right funding from the country's leading banks and NBFCs.</p>
+        <p class="body">Centurion Strategic Ventures is a loan advisory firm based in Ahmedabad that connects businesses, professionals and families across Gujarat and the rest of India with the right funding from the country's leading banks and NBFCs.</p>
         <p class="body">Led by founders with 20+ years of banking experience across lending and financial services, we bring clarity to every decision and care to every file.</p>
       </div>
     </div>
@@ -803,9 +851,9 @@ footer .legal{display:grid;gap:0;padding-block:0;font-size:13.5px}
       <div class="sec-head rv">
         <p class="eyebrow">Our Solutions</p>
         <h2 class="h2">Funding for every stage of growth.</h2>
-        <p class="lead">Ten ways we help you fund what matters, each matched to your goals.</p>
+        <p class="lead">Whatever you are building, buying or growing, we find the funding that fits and see it through to disbursement.</p>
       </div>
-      <div class="svc" id="solGrid"><div class="svc-col"><div class="svc-card"><div class="svc-head"><span class="svc-ic"><svg viewBox="0 0 24 24"><path d="M3 11 12 4l9 7M5 9.5V20h14V9.5M10 20v-5h4v5"></path></svg></span><h3>For Your Property</h3></div><div class="svc-list"><button class="svc-row" type="button" data-enq="0"><span class="svc-name">Loan Against Property</span><span class="svc-desc">Unlock the value of your property, without selling it.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button><button class="svc-row" type="button" data-enq="1"><span class="svc-name">Home Loan</span><span class="svc-desc">Make your home a reality, with confidence.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button><button class="svc-row" type="button" data-enq="8"><span class="svc-name">Commercial Property Loan</span><span class="svc-desc">Acquire the premises your business deserves.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button><button class="svc-row" type="button" data-enq="4"><span class="svc-name">Stress Property Resolution</span><span class="svc-desc">Expert support to resolve stressed property loans and protect your asset.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button></div></div></div><div class="svc-col"><div class="svc-card"><div class="svc-head"><span class="svc-ic"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"></path></svg></span><h3>For Your Business</h3></div><div class="svc-list"><button class="svc-row" type="button" data-enq="2"><span class="svc-name">Working Capital Loan</span><span class="svc-desc">Steady cash flow to keep your business moving.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button><button class="svc-row" type="button" data-enq="3"><span class="svc-name">Project Finance</span><span class="svc-desc">Structured funding for builders and real estate developers.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button><button class="svc-row" type="button" data-enq="5"><span class="svc-name">Business Loan</span><span class="svc-desc">Capital to expand operations and seize new opportunities.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button><button class="svc-row" type="button" data-enq="7"><span class="svc-name">Private Funding</span><span class="svc-desc">Flexible funding from private sources, beyond traditional banks.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button></div></div></div><div class="svc-col"><div class="svc-card"><div class="svc-head"><span class="svc-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg></span><h3>For You</h3></div><div class="svc-list"><button class="svc-row" type="button" data-enq="6"><span class="svc-name">Personal Loan</span><span class="svc-desc">Quick support for life's key moments.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button><button class="svc-row" type="button" data-enq="9"><span class="svc-name">Professional Loan</span><span class="svc-desc">Tailored funding for doctors, CAs and advocates.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button></div></div><div class="svc-help"><b>Not sure which loan fits?</b><span>Tell us what you are planning and our advisors will guide you.</span><div class="svc-help-links"><a href="#enquire" data-open="customer">Talk to an advisor</a><a href="#calculator">Try the calculators</a></div></div></div></div>
+      <div class="svc" id="solGrid"><div class="svc-card svc-all"><div class="svc-list svc-2"><button class="svc-row" type="button" data-enq="0"><span class="svc-name">Loan Against Property</span><span class="svc-desc">Unlock the value of your property, without selling it.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button><button class="svc-row" type="button" data-enq="1"><span class="svc-name">Home Loan</span><span class="svc-desc">Make your home a reality, with confidence.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button><button class="svc-row" type="button" data-enq="2"><span class="svc-name">Working Capital Loan</span><span class="svc-desc">Steady cash flow to keep your business moving.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button><button class="svc-row" type="button" data-enq="3"><span class="svc-name">Project Finance</span><span class="svc-desc">Structured funding for builders and real estate developers.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button><button class="svc-row" type="button" data-enq="4"><span class="svc-name">Stress Property Resolution</span><span class="svc-desc">Expert support to resolve stressed property loans and protect your asset.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button><button class="svc-row" type="button" data-enq="5"><span class="svc-name">Business Loan</span><span class="svc-desc">Capital to expand operations and seize new opportunities.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button><button class="svc-row" type="button" data-enq="6"><span class="svc-name">Personal Loan</span><span class="svc-desc">Quick support for life's key moments.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button><button class="svc-row" type="button" data-enq="7"><span class="svc-name">Private Funding</span><span class="svc-desc">Flexible funding from private sources, beyond traditional banks.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button><button class="svc-row" type="button" data-enq="8"><span class="svc-name">Commercial Property Loan</span><span class="svc-desc">Acquire the premises your business deserves.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button><button class="svc-row" type="button" data-enq="9"><span class="svc-name">Professional Loan</span><span class="svc-desc">Tailored funding for doctors, CAs and advocates.</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button></div></div><div class="svc-help"><span class="sh-ic"><svg viewBox="0 0 24 24"><path d="M4 13v-1a8 8 0 0 1 16 0v1"></path><rect x="3" y="13" width="4" height="6" rx="1.5"></rect><rect x="17" y="13" width="4" height="6" rx="1.5"></rect><path d="M19 19c0 1.5-2 2.5-5 2.5"></path></svg></span><b>Not sure which loan fits?</b><span class="sh-sub">Tell us what you are planning. Our advisors will guide you to the right solution.</span><ul class="sh-list"><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>Free consultation</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>One dedicated advisor</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>Options from 100+ banks and NBFCs</li></ul><div class="sh-ctas"><a class="btn btn-gold" href="#enquire" data-open="customer">Talk to an Advisor</a><a class="btn sh-ghost" href="#calculator">Try the Calculators</a></div><a class="sh-call" href="tel:+919274705844">Or call <b>+91 92747 05844</b></a></div></div>
     </div>
   </section>
 
@@ -1031,7 +1079,7 @@ document.querySelectorAll(".ln-track").forEach(function(t){
     home:'<path d="M3 11 12 3l9 8M5 9.5V21h14V9.5M10 21v-6h4v6"/>',
     badge:'<path d="M12 3 2 8l10 5 10-5-10-5z"/><path d="M6 10v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/>',
     user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
-    handshake:'<path d="m11 17 2 2a1.4 1.4 0 0 0 2-2M14 14l2.5 2.5a1.4 1.4 0 0 0 2-2L15 11"/><path d="m2 12 5.5-5.5 4 1 3-1.5L22 12l-3 3M2 12l7 7 2-2M7.5 6.5 11 10"/>',
+    handshake:'<circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/>',
     rupee:'<path d="M6 3h12M6 8h12M14 21 6 13h3a5 5 0 0 0 0-10"/>'
   };
   function svg(k){ return '<svg viewBox="0 0 24 24">'+ICON[k]+'</svg>'; }
@@ -1071,20 +1119,14 @@ document.querySelectorAll(".ln-track").forEach(function(t){
     "Professional Loan":"Doctors, CAs and advocates growing their practice."
   };
   var byName = {}; LOANS.forEach(function(l,i){ byName[l[0]] = i; });
-  grid.innerHTML = GROUPS.map(function(G, gi){
-    var rows = G[1].map(function(n){
-      var i = byName[n];
-      return '<button class="svc-row" type="button" data-enq="'+i+'"><span class="svc-name">'+n+'</span><span class="svc-desc">'+LOANS[i][1]+'</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>';
-    }).join("");
-    var extra = gi === GROUPS.length - 1 ? '<div class="svc-help"><b>Not sure which loan fits?</b><span>Tell us what you are planning and our advisors will guide you.</span><div class="svc-help-links"><a href="#enquire" data-open="customer">Talk to an advisor</a><a href="#calculator">Try the calculators</a></div></div>' : '';
-    var icons = [
-      '<svg viewBox="0 0 24 24"><path d="M3 11 12 4l9 7M5 9.5V20h14V9.5M10 20v-5h4v5"/></svg>',
-      '<svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg>',
-      '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>'
-    ];
-    return '<div class="svc-col"><div class="svc-card"><div class="svc-head"><span class="svc-ic">'+icons[gi]+'</span><h3>'+G[0]+'</h3></div><div class="svc-list">'+rows+'</div></div>'+extra+'</div>';
-  }).join("");
-
+  grid.innerHTML = '<div class="svc-card svc-all"><div class="svc-list svc-2">' + LOANS.map(function(l,i){
+      return '<button class="svc-row" type="button" data-enq="'+i+'"><span class="svc-name">'+l[0]+'</span><span class="svc-desc">'+l[1]+'</span><span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>';
+    }).join("") + '</div></div>' +
+    '<div class="svc-help"><span class="sh-ic"><svg viewBox="0 0 24 24"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/><path d="M19 19c0 1.5-2 2.5-5 2.5"/></svg></span>'+
+    '<b>Not sure which loan fits?</b><span class="sh-sub">Tell us what you are planning. Our advisors will guide you to the right solution.</span>'+
+    '<ul class="sh-list"><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Free consultation</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>One dedicated advisor</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Options from 100+ banks and NBFCs</li></ul>'+
+    '<div class="sh-ctas"><a class="btn btn-gold" href="#enquire" data-open="customer">Talk to an Advisor</a><a class="btn sh-ghost" href="#calculator">Try the Calculators</a></div>'+
+    '<a class="sh-call" href="tel:+919274705844">Or call <b>+91 92747 05844</b></a></div>';
   /* documents */
   var DOCS = {
     sal:["PAN card and Aadhaar card","Latest 3 months' salary slips","Last 6 months' bank statements","Form 16 or latest income tax return","Property papers, for property-backed loans"],
