@@ -793,6 +793,24 @@ footer .ft-h{font-family:var(--f-display);color:var(--navy-800);font-size:14px;f
 .legal-bar a.credit span{color:var(--gold-text);font-weight:600}
 .legal-bar a.credit:hover span{color:var(--navy-800)}
 .mbar .wa{background:#15803D}
+
+/* thank-you with next steps */
+.ty{display:flex;flex-direction:column;gap:20px;flex:1}
+.ty-top{display:flex;gap:16px;align-items:center}
+.ty-top .badge{flex:0 0 56px;width:56px;height:56px;border-radius:50%;background:#FBF3DD;display:grid;place-items:center}
+.ty-top .badge svg{width:26px;height:26px;stroke:var(--gold);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ty-top h3{font-size:24px;font-weight:600}
+.ty-top p{color:var(--muted);font-size:15px;margin-top:4px}
+.ty-steps{list-style:none;margin:0;padding:0;display:grid;gap:0;position:relative}
+.ty-steps li{display:grid;grid-template-columns:36px 1fr;gap:14px;padding:12px 0;position:relative}
+.ty-steps li:not(:last-child)::after{content:"";position:absolute;left:17.5px;top:46px;bottom:-4px;width:1px;background:linear-gradient(180deg,var(--gold),rgba(217,169,59,.2))}
+.ty-n{width:36px;height:36px;border-radius:50%;background:var(--navy-800);color:var(--gold);font-family:var(--f-display);font-weight:600;font-size:15px;display:grid;place-items:center}
+.ty-steps b{display:block;font-family:var(--f-display);font-size:16px;font-weight:600;color:var(--ink);margin-top:6px}
+.ty-steps li > div > span{display:block;font-size:14.5px;color:var(--muted);line-height:1.55;margin-top:2px}
+.ty-mail{font-size:14px;color:var(--muted);background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.ty-mail b{color:var(--ink);font-weight:600;word-break:break-all}
+.ty-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:auto}
+@media (max-width:640px){.ty-top h3{font-size:21px}.ty-ctas .btn{width:100%}}
 </style>
 </head>
 <body>
@@ -1076,6 +1094,16 @@ document.querySelectorAll(".ln-track").forEach(function(t){
   function waLink(text){ return "https://wa.me/" + WA + "?text=" + encodeURIComponent(text); }
   var waDefault = waLink("Hi Centurion, I would like to know more about your funding solutions.");
   ["waFloat","waBar","waClosing"].forEach(function(id){ var el=document.getElementById(id); if(el) el.href = waDefault; });
+  /* WhatsApp buttons remember the last service the visitor looked at */
+  function setWaService(name){
+    if(!name) return;
+    var msg;
+    if(name === "Stress Property Resolution") msg = "Hi Centurion, I'd like help with Stress Property Resolution. Please guide me with the next steps.";
+    else msg = "Hi Centurion, I'm interested in " + (/Loan$/.test(name) ? "a " : "") + name + ". Please guide me with the next steps.";
+    var href = waLink(msg);
+    ["waFloat","waBar","waClosing"].forEach(function(id){ var el = document.getElementById(id); if(el) el.href = href; });
+  }
+  window.__setWaService = setWaService;
 
   var ICON = {
     briefcase:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/>',
@@ -1190,7 +1218,7 @@ document.querySelectorAll(".ln-track").forEach(function(t){
     state = {flow:kind, step:0, data:{}};
     if(preset){
       var list = preset.list || [preset];
-      list.forEach(function(p){ state.data[p.key] = p.val; });
+      list.forEach(function(p){ state.data[p.key] = p.val; if(p.key === "need") setWaService(p.val); });
       state.step = list.length;
       if(preset.calc) state.data.calc = preset.calc;
     }
@@ -1211,6 +1239,7 @@ document.querySelectorAll(".ln-track").forEach(function(t){
         '<div class="field"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" value="'+esc(d.name||"")+'" required></div>'+
         '<div class="field"><label for="f-mobile">Mobile number</label><div class="phone-wrap"><span>+91</span><input id="f-mobile" name="mobile" inputmode="numeric" autocomplete="tel-national" maxlength="10" value="'+esc(d.mobile||"")+'" required></div><div class="err" id="mErr"></div></div>'+
         '<div class="field"><label for="f-city">City <em>(optional)</em></label><input id="f-city" name="city" autocomplete="address-level2" value="'+esc(d.city||"")+'"></div>'+
+        '<div class="field"><label for="f-email">Email <em>(optional, to receive a confirmation)</em></label><input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" value="'+esc(d.email||"")+'"><div class="err" id="eErr"></div></div>'+
         '<p class="consent">By submitting, you agree to be contacted by Centurion about your enquiry.</p>'+
         '</div><div class="flow-actions"><button class="btn btn-navy" type="submit">Submit '+ARROW+'</button></div></form>';
     } else {
@@ -1231,12 +1260,15 @@ document.querySelectorAll(".ln-track").forEach(function(t){
       var form = document.getElementById("cForm");
       form.addEventListener("submit", function(e){
         e.preventDefault();
-        var name = form.name.value.trim(), mob = form.mobile.value.replace(/\D/g,""), city = form.city.value.trim();
+        var name = form.name.value.trim(), mob = form.mobile.value.replace(/\D/g,""), city = form.city.value.trim(), email = form.email.value.trim();
         var err = document.getElementById("mErr");
         if(!name){ form.name.focus(); return; }
         if(!/^[6-9]\d{9}$/.test(mob)){ err.textContent = "Please enter a valid 10-digit mobile number."; form.mobile.focus(); return; }
         err.textContent = "";
-        state.data.name = name; state.data.mobile = mob; state.data.city = city;
+        var eErr = document.getElementById("eErr");
+        if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ eErr.textContent = "Please check your email address, or leave it blank."; form.email.focus(); return; }
+        eErr.textContent = "";
+        state.data.name = name; state.data.mobile = mob; state.data.city = city; state.data.email = email;
         submitLead(state.flow, state.data);
       });
       form.mobile.addEventListener("input", function(){ this.value = this.value.replace(/\D/g,"").slice(0,10); });
@@ -1250,6 +1282,7 @@ document.querySelectorAll(".ln-track").forEach(function(t){
             state.data[s.key] = arr; renderStep();
           } else {
             state.data[s.key] = v;
+            if(s.key === "need") setWaService(v);
             flowEl.querySelectorAll(".opt").forEach(function(x){ x.setAttribute("aria-pressed", x===b ? "true":"false"); });
             setTimeout(function(){ state.step++; renderStep(); }, 220);
           }
@@ -1261,8 +1294,13 @@ document.querySelectorAll(".ln-track").forEach(function(t){
   }
 
   /* Leads are posted to the site's serverless endpoint at launch (customer and partner go to separate inboxes). In this preview nothing is sent. */
+  /* Sends every lead to the site's server step (/api/enquiry): emails the right inbox, saves to Google Sheet,
+     and emails the visitor a branded confirmation if they gave an email. The thank-you screen never waits on it. */
   function sendLead(payload){
-    try { /* fetch("/api/enquiry",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}); */ } catch(e){}
+    try {
+      payload.page = location.href; payload.submittedAt = new Date().toISOString();
+      if(window.fetch) fetch("/api/enquiry", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(payload), keepalive:true}).catch(function(){});
+    } catch(e){}
     return Promise.resolve();
   }
 
@@ -1275,11 +1313,19 @@ document.querySelectorAll(".ln-track").forEach(function(t){
     sendLead({type:kind, data:d}).then(function(){
       try{ localStorage.setItem("csv_lead_done","1"); }catch(e){}
       var first = esc(d.name.split(" ")[0]);
-      flowEl.innerHTML = '<div class="done fade-in"><span class="badge">'+CHECK+'</span>'+
-        '<h3>Thank you, '+first+'.</h3>'+
-        '<p>'+(kind==="customer" ? "Your enquiry has been received. One of our advisors will call you shortly." : "Your partner enquiry has been received. Our partnerships team will reach out shortly.")+'</p>'+
-        '<a class="btn btn-navy" href="'+waLink(summary(kind,d))+'" target="_blank" rel="noopener">Continue on WhatsApp</a>'+
-        '<button class="back" type="button" id="again" style="margin-top:4px">Start a new enquiry</button></div>';
+      var steps = kind === "customer" ? [
+        ["Your advisor calls you", "Expect a call on +91 "+esc(d.mobile)+" to understand your "+esc(d.need || "funding")+" needs and goals."],
+        ["We review your requirement", "Your advisor studies your profile and requirement in detail."],
+        ["You get the best options", "We compare 100+ banks and NBFCs and recommend the right fit for you."]
+      ] : [
+        ["We call you", "Expect a call on +91 "+esc(d.mobile)+" to understand your network and the cases you handle."],
+        ["We review your profile", "Our team reviews your profile, network and business potential."],
+        ["You start referring", "We share our payout structure and onboarding, and assign you a dedicated relationship manager."]
+      ];
+      flowEl.innerHTML = '<div class="ty fade-in"><div class="ty-top"><span class="badge">'+CHECK+'</span><div><h3>Thank you, '+first+'.</h3><p>'+(kind==="customer" ? "Your enquiry has been received." : "Your partner enquiry has been received.")+' Here is what happens next.</p></div></div>'+
+        '<ol class="ty-steps">'+steps.map(function(st,i){ return '<li><span class="ty-n">'+(i+1)+'</span><div><b>'+st[0]+'</b><span>'+st[1]+'</span></div></li>'; }).join("")+'</ol>'+
+        (d.email ? '<p class="ty-mail">A confirmation has been sent to <b>'+esc(d.email)+'</b>.</p>' : '')+
+        '<div class="ty-ctas"><a class="btn btn-navy" href="'+waLink(summary(kind,d))+'" target="_blank" rel="noopener">Continue on WhatsApp</a><button class="back" type="button" id="again">Start a new enquiry</button></div></div>';
       document.getElementById("again").addEventListener("click", renderChooser);
     });
   }
@@ -1392,6 +1438,7 @@ document.querySelectorAll(".ln-track").forEach(function(t){
         box.innerHTML = h; bindBack();
         box.querySelectorAll(".opt").forEach(function(b){ b.addEventListener("click", function(){
           var n = b.dataset.v.replace(/&amp;/g,"&");
+          if(window.__setWaService) window.__setWaService(n);
           if(S.loan !== n){ var t = T[n]; S.loan = n; S.rate = t.r; S.ten = t.t; S.amt = t.a[2]; S.prop = t.prop ? Math.max(t.a[2]*1.6, 2500000) : 0; if(t.biz) S.profile = "self"; }
           box.querySelectorAll(".opt").forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
           setTimeout(next, 220);
@@ -1480,7 +1527,7 @@ document.querySelectorAll(".ln-track").forEach(function(t){
     }
     window.__openCalc = function(loan){
       if(!T[loan]) return;
-      reset(); var t = T[loan]; S.tool = "emi"; S.loan = loan; S.rate = t.r; S.ten = t.t; S.amt = t.a[2]; S.prop = t.prop ? Math.max(t.a[2]*1.6, 2500000) : 0; if(t.biz) S.profile = "self"; S.step = 1; render();
+      reset(); var t = T[loan]; S.tool = "emi"; S.loan = loan; if(window.__setWaService) window.__setWaService(loan); S.rate = t.r; S.ten = t.t; S.amt = t.a[2]; S.prop = t.prop ? Math.max(t.a[2]*1.6, 2500000) : 0; if(t.biz) S.profile = "self"; S.step = 1; render();
       document.getElementById("calculator").scrollIntoView({behavior:"smooth"});
     };
     chooser();

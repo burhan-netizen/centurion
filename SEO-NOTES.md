@@ -34,3 +34,9 @@
 2. Add Google Analytics 4
 3. Create / verify the Google Business Profile with the same name, address and phone
 4. Test with Google Rich Results Test and PageSpeed Insights
+
+## Lead handling (api/enquiry.js)
+Every enquiry is emailed to the right inbox, saved to the Google Sheet, and (if the visitor left an email) answered with a branded confirmation.
+Set these in Vercel > Settings > Environment Variables before launch:
+RESEND_API_KEY, FROM_EMAIL, CUSTOMER_INBOX, PARTNER_INBOX, SHEET_WEBHOOK_URL, SHEET_SECRET, SITE_URL, WHATSAPP_NUMBER
+Until they are set, the site works normally and simply skips sending.
