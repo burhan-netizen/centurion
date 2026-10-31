@@ -26,7 +26,7 @@
 
 ## Before going live (replace in build_site.py CONFIG, then rebuild)
 - SITE_URL (domain): used in canonical, sitemap, robots, schema, social tags
-- Office street address and PIN code: schema, footer, map
+- Office address: not shown on the site (client decision)
 - Email, CIN, GSTIN: footer and schema
 
 ## After launch
