@@ -624,6 +624,53 @@ footer .legal{display:grid;gap:0;padding-block:0;font-size:13.5px}
 .calc-note2{font-size:12.5px;color:var(--muted);margin:22px 0 0;text-align:right}
 @media (max-width:860px){.plan .wrap:first-child{grid-template-columns:1fr}.calc-note2{text-align:left}}
 @media (max-width:640px){.opts-sm{grid-template-columns:1fr 1fr}.opts-sm .opt{font-size:13.5px;padding:11px 12px}.res-ctas{grid-template-columns:1fr}.plan-tools{display:none}}
+
+/* ===== solutions: grouped list + spotlight ===== */
+.spot{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:28px;align-items:stretch}
+.sp-list{display:grid;gap:22px;align-content:start}
+.sp-group{display:grid;gap:4px}
+.sp-glabel{font-family:var(--f-display);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#B8892A;margin:0 0 6px 2px}
+.sp-item{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;border:1px solid transparent;background:transparent;border-radius:14px;padding:13px 16px;font-family:var(--f-display);font-size:16.5px;font-weight:500;color:var(--ink);cursor:pointer;position:relative;transition:background .25s,border-color .25s,color .25s,padding .25s}
+.sp-item svg{width:16px;height:16px;flex:0 0 16px;opacity:0;transform:translateX(-6px);transition:all .25s;color:var(--gold)}
+.sp-item:hover{background:var(--paper)}
+.sp-item[aria-selected="true"]{background:var(--paper);border-color:var(--line);color:var(--navy-800);font-weight:600;padding-left:22px}
+.sp-item[aria-selected="true"]::before{content:"";position:absolute;left:10px;top:14px;bottom:14px;width:3px;border-radius:3px;background:var(--gold)}
+.sp-item[aria-selected="true"] svg,.sp-item:hover svg{opacity:1;transform:none}
+.sp-panel{position:sticky;top:96px;align-self:start;border-radius:24px;overflow:hidden;background:radial-gradient(420px 260px at 100% 0%,rgba(217,169,59,.16),transparent 70%),linear-gradient(160deg,var(--navy-700),var(--navy-900));color:var(--on-dark);box-shadow:0 40px 70px -46px rgba(6,14,31,.8);display:flex;flex-direction:column;min-height:520px}
+.sp-in{animation:spIn .45s ease both}
+@keyframes spIn{from{opacity:.25;transform:translateY(8px)}to{opacity:1;transform:none}}
+.sp-art{position:relative;height:250px;border-bottom:1px solid var(--line-dark)}
+.sp-art::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:16px 16px;pointer-events:none}
+.sp-art svg{position:absolute;inset:26px 30px 6px;width:calc(100% - 60px);height:calc(100% - 32px)}
+.sp-body{padding:30px 34px 34px;display:flex;flex-direction:column;gap:12px;flex:1}
+.sp-eyebrow{font-family:var(--f-display);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.sp-body h3{font-size:clamp(24px,2.6vw,30px);font-weight:600;color:var(--white);letter-spacing:-.02em}
+.sp-desc{font-size:16.5px;color:var(--on-dark);line-height:1.6}
+.sp-for{font-size:14.5px;color:var(--on-dark-muted);line-height:1.55;padding-top:12px;border-top:1px solid var(--line-dark)}
+.sp-for b{display:block;font-family:var(--f-display);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark);margin-bottom:4px}
+.sp-ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:8px}
+.sp-calc{height:52px;padding:0 22px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:transparent;color:var(--white);font-family:var(--f-display);font-weight:600;font-size:15px;cursor:pointer;transition:border-color .2s,color .2s}
+.sp-calc:hover{border-color:var(--gold);color:var(--gold)}
+.sp-art .g,.sp-art .l{fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.sp-art .g{stroke:var(--gold)}
+.sp-art .l{stroke:rgba(233,238,248,.62)}
+.sp-art .gf{fill:rgba(217,169,59,.16)}
+.sp-art .lf{fill:rgba(255,255,255,.05)}
+.sp-art .d{stroke-dasharray:3 5}
+.sp-list{gap:16px}
+.sp-item{padding:9px 16px;font-size:15.5px}
+.sp-item[aria-selected="true"]::before{top:10px;bottom:10px}
+.sp-glabel{margin-bottom:4px}
+.sp-panel{min-height:0}
+.sp-art{height:220px}
+@media (max-width:860px){
+  .spot{grid-template-columns:1fr;gap:0}
+  .sp-list{gap:18px}
+  .sp-panel{position:static;min-height:0;margin:6px 0 10px;border-radius:18px}
+  .sp-art{height:170px}
+  .sp-body{padding:22px 22px 24px}
+  .sp-item{font-size:15.5px}
+}
 </style>
 </head>
 <body>
@@ -690,80 +737,16 @@ footer .legal{display:grid;gap:0;padding-block:0;font-size:13.5px}
       <div class="sec-head rv">
         <p class="eyebrow">Our Solutions</p>
         <h2 class="h2">Funding for every stage of growth.</h2>
-        <p class="lead">From loans against property and home loans to working capital, project finance and private funding, matched to your goals.</p>
+        <p class="lead">Ten ways we help you fund what matters. Choose one to see how it works for you.</p>
       </div>
-      <div class="grid4" id="solGrid"><button class="sol rv" type="button" data-loan="0"><span class="art"><svg viewBox="0 0 240 132" aria-hidden="true"><path class="l d" d="M14 118H226"></path>
+      <div class="spot" id="solGrid"><div class="sp-list" role="tablist" aria-label="Our solutions"><div class="sp-group"><span class="sp-glabel">For Your Property</span><button class="sp-item" type="button" role="tab" data-i="0" aria-selected="true"><span>Loan Against Property</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button><button class="sp-item" type="button" role="tab" data-i="1" aria-selected="false"><span>Home Loan</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button><button class="sp-item" type="button" role="tab" data-i="8" aria-selected="false"><span>Commercial Property Loan</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button><button class="sp-item" type="button" role="tab" data-i="4" aria-selected="false"><span>Stress Property Resolution</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button></div><div class="sp-group"><span class="sp-glabel">For Your Business</span><button class="sp-item" type="button" role="tab" data-i="2" aria-selected="false"><span>Working Capital Loan</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button><button class="sp-item" type="button" role="tab" data-i="3" aria-selected="false"><span>Project Finance</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button><button class="sp-item" type="button" role="tab" data-i="5" aria-selected="false"><span>Business Loan</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button><button class="sp-item" type="button" role="tab" data-i="7" aria-selected="false"><span>Private Funding</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button></div><div class="sp-group"><span class="sp-glabel">For You</span><button class="sp-item" type="button" role="tab" data-i="6" aria-selected="false"><span>Personal Loan</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button><button class="sp-item" type="button" role="tab" data-i="9" aria-selected="false"><span>Professional Loan</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button></div></div><div class="sp-panel" id="spPanel" role="tabpanel" aria-live="polite"><div class="sp-art"><svg viewBox="0 0 240 132" aria-hidden="true"><path class="l d" d="M14 118H226"></path>
 <rect class="l lf" x="44" y="30" width="62" height="80" rx="4"></rect>
 <path class="l" d="M56 46h38M56 56h38M56 66h28M56 76h32"></path>
 <path class="l" d="M60 96l6-10 6 10M58 96h16"></path>
 <circle class="g gf" cx="94" cy="96" r="8"></circle><path class="g" d="M90 96h8"></path>
 <circle class="g gf" cx="146" cy="64" r="18"></circle><circle class="g" cx="146" cy="64" r="7"></circle>
 <path class="g" d="M164 64h48M196 64v12M206 64v8"></path>
-<circle class="l" cx="190" cy="32" r="2"></circle><circle class="g" cx="124" cy="30" r="2"></circle></svg></span><span class="sol-body"><h3>Loan Against Property</h3><p>Unlock the value of your property, without selling it.</p><span class="go">Enquire now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></button><button class="sol rv" type="button" data-loan="1"><span class="art"><svg viewBox="0 0 240 132" aria-hidden="true"><path class="l d" d="M14 118H226"></path>
-<path class="g" d="M178 36a16 16 0 0 1 32 0"></path><path class="g" d="M194 12v6M172 22l4 4M216 22l-4 4"></path>
-<path class="l lf" d="M70 70 120 30l50 40v48H70z"></path>
-<path class="l" d="M60 76 120 26l60 50"></path>
-<path class="l" d="M146 46V28h12v28"></path>
-<rect class="g gf" x="110" y="88" width="20" height="30" rx="2"></rect><circle class="g" cx="126" cy="104" r="1.5"></circle>
-<rect class="l" x="82" y="80" width="16" height="14" rx="1"></rect><rect class="l" x="142" y="80" width="16" height="14" rx="1"></rect>
-<path class="l" d="M90 80v14M82 87h16M150 80v14M142 87h16"></path>
-<circle class="l lf" cx="38" cy="88" r="16"></circle><path class="l" d="M38 104v14"></path>
-<path class="g d" d="M114 118l-8 0M126 118l8 0"></path></svg></span><span class="sol-body"><h3>Home Loan</h3><p>Make your home a reality, with confidence.</p><span class="go">Enquire now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></button><button class="sol rv" type="button" data-loan="2"><span class="art"><svg viewBox="0 0 240 132" aria-hidden="true"><path class="l d" d="M14 118H226"></path>
-<circle class="g gf" cx="120" cy="70" r="24"></circle>
-<path class="g" d="M110 59h20M110 66h20M114 59c11 0 11 14 0 14h-3l15 17"></path>
-<path class="l" d="M72 70a48 48 0 0 1 84-32"></path><path class="l" d="M146 32l10 6-4 11"></path>
-<path class="l" d="M168 70a48 48 0 0 1-84 32"></path><path class="l" d="M94 108l-10-6 4-11"></path>
-<ellipse class="l lf" cx="40" cy="112" rx="14" ry="5"></ellipse><ellipse class="l lf" cx="40" cy="104" rx="14" ry="5"></ellipse><ellipse class="g gf" cx="40" cy="96" rx="14" ry="5"></ellipse>
-<ellipse class="l lf" cx="200" cy="112" rx="14" ry="5"></ellipse><ellipse class="g gf" cx="200" cy="104" rx="14" ry="5"></ellipse></svg></span><span class="sol-body"><h3>Working Capital Loan</h3><p>Steady cash flow to keep your business moving.</p><span class="go">Enquire now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></button><button class="sol rv" type="button" data-loan="3"><span class="art"><svg viewBox="0 0 240 132" aria-hidden="true"><path class="l d" d="M14 118H226"></path>
-<path class="l" d="M66 118V26M78 118V26M66 26h12"></path>
-<path class="l" d="M66 40l12 12M78 52 66 64M66 64l12 12M78 76 66 88M66 88l12 12M78 100 66 112"></path>
-<path class="g" d="M40 26h150M72 26l-10-12h20zM72 14v12"></path>
-<rect class="g gf" x="42" y="27" width="14" height="10" rx="1"></rect>
-<path class="g" d="M158 26v34"></path><path class="g" d="M154 60h8v4a4 4 0 0 1-8 0"></path>
-<rect class="g gf" x="140" y="68" width="36" height="6" rx="1"></rect>
-<rect class="l lf" x="138" y="82" width="74" height="36" rx="2"></rect>
-<path class="l" d="M138 94h74M138 106h74M162 82v36M188 82v36"></path>
-<path class="g d" d="M138 82v-8M212 82v-8"></path></svg></span><span class="sol-body"><h3>Project Finance</h3><p>Structured funding for builders and real estate developers.</p><span class="go">Enquire now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></button><button class="sol rv" type="button" data-loan="4"><span class="art"><svg viewBox="0 0 240 132" aria-hidden="true"><path class="l d" d="M14 118H226"></path>
-<rect class="l lf" x="44" y="62" width="50" height="56" rx="3"></rect>
-<path class="l" d="M40 64l29-22 29 22"></path>
-<rect class="l" x="62" y="96" width="14" height="22" rx="1"></rect><rect class="l" x="52" y="74" width="10" height="9" rx="1"></rect><rect class="l" x="76" y="74" width="10" height="9" rx="1"></rect>
-<path class="g gf" d="M150 22l38 14v26c0 24-17 42-38 50-21-8-38-26-38-50V36z"></path>
-<path class="g" d="M134 66l12 12 22-24"></path>
-<path class="l" d="M100 52c10-14 18-18 26-20"></path><path class="l" d="M120 28l7 4-4 7"></path></svg></span><span class="sol-body"><h3>Stress Property Resolution</h3><p>Expert support to resolve stressed property loans and protect your asset.</p><span class="go">Enquire now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></button><button class="sol rv" type="button" data-loan="5"><span class="art"><svg viewBox="0 0 240 132" aria-hidden="true"><path class="l d" d="M14 118H226"></path>
-<rect class="l lf" x="34" y="44" width="66" height="74" rx="3"></rect><rect class="l" x="44" y="54" width="8" height="7" rx="1"></rect><rect class="l" x="58" y="54" width="8" height="7" rx="1"></rect><rect class="l" x="72" y="54" width="8" height="7" rx="1"></rect><rect class="l" x="44" y="67" width="8" height="7" rx="1"></rect><rect class="l" x="58" y="67" width="8" height="7" rx="1"></rect><rect class="l" x="72" y="67" width="8" height="7" rx="1"></rect><rect class="l" x="44" y="80" width="8" height="7" rx="1"></rect><rect class="l" x="58" y="80" width="8" height="7" rx="1"></rect><rect class="l" x="72" y="80" width="8" height="7" rx="1"></rect><rect class="l" x="44" y="93" width="8" height="7" rx="1"></rect><rect class="l" x="58" y="93" width="8" height="7" rx="1"></rect><rect class="l" x="72" y="93" width="8" height="7" rx="1"></rect><rect class="l" x="44" y="106" width="8" height="7" rx="1"></rect><rect class="l" x="58" y="106" width="8" height="7" rx="1"></rect><rect class="l" x="72" y="106" width="8" height="7" rx="1"></rect>
-<rect class="l" x="58" y="102" width="18" height="16" rx="1"></rect>
-<rect class="g gf" x="128" y="92" width="14" height="26" rx="2"></rect>
-<rect class="g gf" x="150" y="78" width="14" height="40" rx="2"></rect>
-<rect class="g gf" x="172" y="60" width="14" height="58" rx="2"></rect>
-<rect class="g gf" x="194" y="40" width="14" height="78" rx="2"></rect>
-<path class="g" d="M120 82 146 64 168 70 204 28"></path><path class="g" d="M192 28h12v12"></path></svg></span><span class="sol-body"><h3>Business Loan</h3><p>Capital to expand operations and seize new opportunities.</p><span class="go">Enquire now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></button><button class="sol rv" type="button" data-loan="6"><span class="art"><svg viewBox="0 0 240 132" aria-hidden="true"><path class="l d" d="M14 118H226"></path>
-<rect class="l lf" x="70" y="56" width="92" height="60" rx="8"></rect>
-<path class="l" d="M70 72h80a12 12 0 0 1 12 12v8a12 12 0 0 1-12 12H70"></path>
-<rect class="g gf" x="138" y="78" width="30" height="22" rx="6"></rect><circle class="g" cx="150" cy="89" r="3"></circle>
-<circle class="g gf" cx="102" cy="38" r="11"></circle><circle class="g gf" cx="128" cy="24" r="9"></circle>
-<circle class="g" cx="102" cy="38" r="6"></circle><circle class="g" cx="128" cy="24" r="4.5"></circle>
-<path class="g" d="M190 50c0-6 8-8 10-2 2-6 10-4 10 2 0 8-10 12-10 16-0-4-10-8-10-16z"></path>
-<circle class="l" cx="44" cy="44" r="2"></circle><circle class="l" cx="206" cy="96" r="2"></circle></svg></span><span class="sol-body"><h3>Personal Loan</h3><p>Quick support for life's key moments.</p><span class="go">Enquire now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></button><button class="sol rv" type="button" data-loan="7"><span class="art"><svg viewBox="0 0 240 132" aria-hidden="true"><path class="l d" d="M14 118H226"></path>
-<path class="l" d="M40 72l22-16 18 6 14-8 22 16"></path>
-<path class="l" d="M40 72l26 26a5 5 0 0 0 7-7l-4-4M73 87l5 5a5 5 0 0 0 7-7l-4-4M81 81l4 4a5 5 0 0 0 7-7l-8-8M92 70l4 4a5 5 0 0 0 7-7l-7-7"></path>
-<path class="l" d="M116 70l-12 12"></path>
-<ellipse class="l lf" cx="170" cy="110" rx="22" ry="7"></ellipse><ellipse class="l lf" cx="170" cy="100" rx="22" ry="7"></ellipse><ellipse class="g gf" cx="170" cy="90" rx="22" ry="7"></ellipse><ellipse class="g gf" cx="170" cy="80" rx="22" ry="7"></ellipse>
-<circle class="g gf" cx="196" cy="44" r="14"></circle><path class="g" d="M190 38h12M190 43h12M193 38c7 0 7 9 0 9h-2l9 10"></path>
-<circle class="l" cx="140" cy="36" r="2"></circle></svg></span><span class="sol-body"><h3>Private Funding</h3><p>Flexible funding from private sources, beyond traditional banks.</p><span class="go">Enquire now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></button><button class="sol rv" type="button" data-loan="8"><span class="art"><svg viewBox="0 0 240 132" aria-hidden="true"><path class="l d" d="M14 118H226"></path>
-<rect class="l lf" x="58" y="26" width="46" height="92" rx="3"></rect><rect class="l" x="66" y="36" width="7" height="6" rx="1"></rect><rect class="l" x="78" y="36" width="7" height="6" rx="1"></rect><rect class="l" x="90" y="36" width="7" height="6" rx="1"></rect><rect class="l" x="66" y="49" width="7" height="6" rx="1"></rect><rect class="l" x="78" y="49" width="7" height="6" rx="1"></rect><rect class="l" x="90" y="49" width="7" height="6" rx="1"></rect><rect class="l" x="66" y="62" width="7" height="6" rx="1"></rect><rect class="l" x="78" y="62" width="7" height="6" rx="1"></rect><rect class="l" x="90" y="62" width="7" height="6" rx="1"></rect><rect class="l" x="66" y="75" width="7" height="6" rx="1"></rect><rect class="l" x="78" y="75" width="7" height="6" rx="1"></rect><rect class="l" x="90" y="75" width="7" height="6" rx="1"></rect><rect class="l" x="66" y="88" width="7" height="6" rx="1"></rect><rect class="l" x="78" y="88" width="7" height="6" rx="1"></rect><rect class="l" x="90" y="88" width="7" height="6" rx="1"></rect><rect class="l" x="66" y="101" width="7" height="6" rx="1"></rect><rect class="l" x="78" y="101" width="7" height="6" rx="1"></rect><rect class="l" x="90" y="101" width="7" height="6" rx="1"></rect>
-<rect class="l lf" x="112" y="52" width="66" height="66" rx="3"></rect><rect class="l" x="122" y="60" width="8" height="6" rx="1"></rect><rect class="l" x="136" y="60" width="8" height="6" rx="1"></rect><rect class="l" x="150" y="60" width="8" height="6" rx="1"></rect><rect class="l" x="164" y="60" width="8" height="6" rx="1"></rect><rect class="l" x="122" y="73" width="8" height="6" rx="1"></rect><rect class="l" x="136" y="73" width="8" height="6" rx="1"></rect><rect class="l" x="150" y="73" width="8" height="6" rx="1"></rect><rect class="l" x="164" y="73" width="8" height="6" rx="1"></rect><rect class="l" x="122" y="86" width="8" height="6" rx="1"></rect><rect class="l" x="136" y="86" width="8" height="6" rx="1"></rect><rect class="l" x="150" y="86" width="8" height="6" rx="1"></rect><rect class="l" x="164" y="86" width="8" height="6" rx="1"></rect>
-<path class="g" d="M108 92h74l-6 10H114z"></path>
-<path class="g" d="M118 102v16M172 102v16"></path><rect class="g gf" x="130" y="104" width="30" height="14" rx="1"></rect>
-<circle class="l lf" cx="200" cy="96" r="12"></circle><path class="l" d="M200 108v10"></path>
-<path class="g" d="M78 18h6"></path></svg></span><span class="sol-body"><h3>Commercial Property Loan</h3><p>Acquire the premises your business deserves.</p><span class="go">Enquire now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></button><button class="sol rv" type="button" data-loan="9"><span class="art"><svg viewBox="0 0 240 132" aria-hidden="true"><path class="l d" d="M14 118H226"></path>
-<rect class="l lf" x="84" y="58" width="72" height="54" rx="6"></rect>
-<path class="l" d="M106 58v-8a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v8M84 78h72"></path>
-<rect class="g gf" x="114" y="72" width="12" height="12" rx="2"></rect>
-<path class="g" d="M40 40v20a14 14 0 0 0 28 0V40M54 74v18a12 12 0 0 0 24 0v-6"></path><circle class="g" cx="78" cy="82" r="5"></circle>
-<path class="l" d="M36 40h8M64 40h8"></path>
-<path class="g" d="M190 34v62M174 96h32M168 50h44"></path>
-<path class="l" d="M168 50l-8 22h16zM212 50l-8 22h16z"></path>
-<path class="l" d="M160 72a8 4 0 0 0 16 0M204 72a8 4 0 0 0 16 0"></path></svg></span><span class="sol-body"><h3>Professional Loan</h3><p>Tailored funding for doctors, CAs and advocates.</p><span class="go">Enquire now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></button></div>
+<circle class="l" cx="190" cy="32" r="2"></circle><circle class="g" cx="124" cy="30" r="2"></circle></svg></div><div class="sp-body"><span class="sp-eyebrow">For Your Property</span><h3>Loan Against Property</h3><p class="sp-desc">Unlock the value of your property, without selling it.</p><p class="sp-for"><b>Ideal for</b>Business owners, self-employed and salaried property owners.</p><div class="sp-ctas"><button class="btn btn-gold" type="button" data-enq="0">Enquire now</button><button class="sp-calc" type="button" data-calc="0">Calculate EMI</button></div></div></div></div>
     </div>
   </section>
 
@@ -773,7 +756,7 @@ footer .legal{display:grid;gap:0;padding-block:0;font-size:13.5px}
       <div class="plan-intro rv">
         <p class="eyebrow">Plan Your Loan</p>
         <h2 class="h2" style="margin-top:16px">Know your numbers before you apply.</h2>
-        <p class="lead" style="margin-top:16px">Two quick tools. Pick one, answer a few taps and get your answer in seconds.</p>
+        <p class="lead" style="margin-top:16px">Clarity before commitment. See what your loan could look like, then let our advisors find the best offer.</p>
         <div class="plan-tools">
           <button type="button" class="pt" data-tool="emi"><span class="pt-ic"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M8 15h2M12 15h2M16 11v4"/></svg></span><div><b>EMI Calculator</b><span>See your monthly EMI and total interest.</span></div></button>
           <button type="button" class="pt" data-tool="elig"><span class="pt-ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><div><b>Eligibility Check</b><span>Find out how much you could borrow.</span></div></button>
@@ -1011,9 +994,37 @@ document.querySelectorAll(".ln-track").forEach(function(t){
   ];
   var ART={"briefcase": "<svg viewBox=\"0 0 240 132\" aria-hidden=\"true\"><path class=\"l d\" d=\"M14 118H226\"/>\n<rect class=\"l lf\" x=\"34\" y=\"44\" width=\"66\" height=\"74\" rx=\"3\"/><rect class=\"l\" x=\"44\" y=\"54\" width=\"8\" height=\"7\" rx=\"1\"/><rect class=\"l\" x=\"58\" y=\"54\" width=\"8\" height=\"7\" rx=\"1\"/><rect class=\"l\" x=\"72\" y=\"54\" width=\"8\" height=\"7\" rx=\"1\"/><rect class=\"l\" x=\"44\" y=\"67\" width=\"8\" height=\"7\" rx=\"1\"/><rect class=\"l\" x=\"58\" y=\"67\" width=\"8\" height=\"7\" rx=\"1\"/><rect class=\"l\" x=\"72\" y=\"67\" width=\"8\" height=\"7\" rx=\"1\"/><rect class=\"l\" x=\"44\" y=\"80\" width=\"8\" height=\"7\" rx=\"1\"/><rect class=\"l\" x=\"58\" y=\"80\" width=\"8\" height=\"7\" rx=\"1\"/><rect class=\"l\" x=\"72\" y=\"80\" width=\"8\" height=\"7\" rx=\"1\"/><rect class=\"l\" x=\"44\" y=\"93\" width=\"8\" height=\"7\" rx=\"1\"/><rect class=\"l\" x=\"58\" y=\"93\" width=\"8\" height=\"7\" rx=\"1\"/><rect class=\"l\" x=\"72\" y=\"93\" width=\"8\" height=\"7\" rx=\"1\"/><rect class=\"l\" x=\"44\" y=\"106\" width=\"8\" height=\"7\" rx=\"1\"/><rect class=\"l\" x=\"58\" y=\"106\" width=\"8\" height=\"7\" rx=\"1\"/><rect class=\"l\" x=\"72\" y=\"106\" width=\"8\" height=\"7\" rx=\"1\"/>\n<rect class=\"l\" x=\"58\" y=\"102\" width=\"18\" height=\"16\" rx=\"1\"/>\n<rect class=\"g gf\" x=\"128\" y=\"92\" width=\"14\" height=\"26\" rx=\"2\"/>\n<rect class=\"g gf\" x=\"150\" y=\"78\" width=\"14\" height=\"40\" rx=\"2\"/>\n<rect class=\"g gf\" x=\"172\" y=\"60\" width=\"14\" height=\"58\" rx=\"2\"/>\n<rect class=\"g gf\" x=\"194\" y=\"40\" width=\"14\" height=\"78\" rx=\"2\"/>\n<path class=\"g\" d=\"M120 82 146 64 168 70 204 28\"/><path class=\"g\" d=\"M192 28h12v12\"/></svg>", "cycle": "<svg viewBox=\"0 0 240 132\" aria-hidden=\"true\"><path class=\"l d\" d=\"M14 118H226\"/>\n<circle class=\"g gf\" cx=\"120\" cy=\"70\" r=\"24\"/>\n<path class=\"g\" d=\"M110 59h20M110 66h20M114 59c11 0 11 14 0 14h-3l15 17\"/>\n<path class=\"l\" d=\"M72 70a48 48 0 0 1 84-32\"/><path class=\"l\" d=\"M146 32l10 6-4 11\"/>\n<path class=\"l\" d=\"M168 70a48 48 0 0 1-84 32\"/><path class=\"l\" d=\"M94 108l-10-6 4-11\"/>\n<ellipse class=\"l lf\" cx=\"40\" cy=\"112\" rx=\"14\" ry=\"5\"/><ellipse class=\"l lf\" cx=\"40\" cy=\"104\" rx=\"14\" ry=\"5\"/><ellipse class=\"g gf\" cx=\"40\" cy=\"96\" rx=\"14\" ry=\"5\"/>\n<ellipse class=\"l lf\" cx=\"200\" cy=\"112\" rx=\"14\" ry=\"5\"/><ellipse class=\"g gf\" cx=\"200\" cy=\"104\" rx=\"14\" ry=\"5\"/></svg>", "crane": "<svg viewBox=\"0 0 240 132\" aria-hidden=\"true\"><path class=\"l d\" d=\"M14 118H226\"/>\n<path class=\"l\" d=\"M66 118V26M78 118V26M66 26h12\"/>\n<path class=\"l\" d=\"M66 40l12 12M78 52 66 64M66 64l12 12M78 76 66 88M66 88l12 12M78 100 66 112\"/>\n<path class=\"g\" d=\"M40 26h150M72 26l-10-12h20zM72 14v12\"/>\n<rect class=\"g gf\" x=\"42\" y=\"27\" width=\"14\" height=\"10\" rx=\"1\"/>\n<path class=\"g\" d=\"M158 26v34\"/><path class=\"g\" d=\"M154 60h8v4a4 4 0 0 1-8 0\"/>\n<rect class=\"g gf\" x=\"140\" y=\"68\" width=\"36\" height=\"6\" rx=\"1\"/>\n<rect class=\"l lf\" x=\"138\" y=\"82\" width=\"74\" height=\"36\" rx=\"2\"/>\n<path class=\"l\" d=\"M138 94h74M138 106h74M162 82v36M188 82v36\"/>\n<path class=\"g d\" d=\"M138 82v-8M212 82v-8\"/></svg>", "store": "<svg viewBox=\"0 0 240 132\" aria-hidden=\"true\"><path class=\"l d\" d=\"M14 118H226\"/>\n<rect class=\"l lf\" x=\"58\" y=\"26\" width=\"46\" height=\"92\" rx=\"3\"/><rect class=\"l\" x=\"66\" y=\"36\" width=\"7\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"78\" y=\"36\" width=\"7\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"90\" y=\"36\" width=\"7\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"66\" y=\"49\" width=\"7\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"78\" y=\"49\" width=\"7\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"90\" y=\"49\" width=\"7\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"66\" y=\"62\" width=\"7\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"78\" y=\"62\" width=\"7\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"90\" y=\"62\" width=\"7\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"66\" y=\"75\" width=\"7\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"78\" y=\"75\" width=\"7\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"90\" y=\"75\" width=\"7\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"66\" y=\"88\" width=\"7\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"78\" y=\"88\" width=\"7\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"90\" y=\"88\" width=\"7\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"66\" y=\"101\" width=\"7\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"78\" y=\"101\" width=\"7\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"90\" y=\"101\" width=\"7\" height=\"6\" rx=\"1\"/>\n<rect class=\"l lf\" x=\"112\" y=\"52\" width=\"66\" height=\"66\" rx=\"3\"/><rect class=\"l\" x=\"122\" y=\"60\" width=\"8\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"136\" y=\"60\" width=\"8\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"150\" y=\"60\" width=\"8\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"164\" y=\"60\" width=\"8\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"122\" y=\"73\" width=\"8\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"136\" y=\"73\" width=\"8\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"150\" y=\"73\" width=\"8\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"164\" y=\"73\" width=\"8\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"122\" y=\"86\" width=\"8\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"136\" y=\"86\" width=\"8\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"150\" y=\"86\" width=\"8\" height=\"6\" rx=\"1\"/><rect class=\"l\" x=\"164\" y=\"86\" width=\"8\" height=\"6\" rx=\"1\"/>\n<path class=\"g\" d=\"M108 92h74l-6 10H114z\"/>\n<path class=\"g\" d=\"M118 102v16M172 102v16\"/><rect class=\"g gf\" x=\"130\" y=\"104\" width=\"30\" height=\"14\" rx=\"1\"/>\n<circle class=\"l lf\" cx=\"200\" cy=\"96\" r=\"12\"/><path class=\"l\" d=\"M200 108v10\"/>\n<path class=\"g\" d=\"M78 18h6\"/></svg>", "key": "<svg viewBox=\"0 0 240 132\" aria-hidden=\"true\"><path class=\"l d\" d=\"M14 118H226\"/>\n<rect class=\"l lf\" x=\"44\" y=\"30\" width=\"62\" height=\"80\" rx=\"4\"/>\n<path class=\"l\" d=\"M56 46h38M56 56h38M56 66h28M56 76h32\"/>\n<path class=\"l\" d=\"M60 96l6-10 6 10M58 96h16\"/>\n<circle class=\"g gf\" cx=\"94\" cy=\"96\" r=\"8\"/><path class=\"g\" d=\"M90 96h8\"/>\n<circle class=\"g gf\" cx=\"146\" cy=\"64\" r=\"18\"/><circle class=\"g\" cx=\"146\" cy=\"64\" r=\"7\"/>\n<path class=\"g\" d=\"M164 64h48M196 64v12M206 64v8\"/>\n<circle class=\"l\" cx=\"190\" cy=\"32\" r=\"2\"/><circle class=\"g\" cx=\"124\" cy=\"30\" r=\"2\"/></svg>", "home": "<svg viewBox=\"0 0 240 132\" aria-hidden=\"true\"><path class=\"l d\" d=\"M14 118H226\"/>\n<path class=\"g\" d=\"M178 36a16 16 0 0 1 32 0\"/><path class=\"g\" d=\"M194 12v6M172 22l4 4M216 22l-4 4\"/>\n<path class=\"l lf\" d=\"M70 70 120 30l50 40v48H70z\"/>\n<path class=\"l\" d=\"M60 76 120 26l60 50\"/>\n<path class=\"l\" d=\"M146 46V28h12v28\"/>\n<rect class=\"g gf\" x=\"110\" y=\"88\" width=\"20\" height=\"30\" rx=\"2\"/><circle class=\"g\" cx=\"126\" cy=\"104\" r=\"1.5\"/>\n<rect class=\"l\" x=\"82\" y=\"80\" width=\"16\" height=\"14\" rx=\"1\"/><rect class=\"l\" x=\"142\" y=\"80\" width=\"16\" height=\"14\" rx=\"1\"/>\n<path class=\"l\" d=\"M90 80v14M82 87h16M150 80v14M142 87h16\"/>\n<circle class=\"l lf\" cx=\"38\" cy=\"88\" r=\"16\"/><path class=\"l\" d=\"M38 104v14\"/>\n<path class=\"g d\" d=\"M114 118l-8 0M126 118l8 0\"/></svg>", "badge": "<svg viewBox=\"0 0 240 132\" aria-hidden=\"true\"><path class=\"l d\" d=\"M14 118H226\"/>\n<rect class=\"l lf\" x=\"84\" y=\"58\" width=\"72\" height=\"54\" rx=\"6\"/>\n<path class=\"l\" d=\"M106 58v-8a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v8M84 78h72\"/>\n<rect class=\"g gf\" x=\"114\" y=\"72\" width=\"12\" height=\"12\" rx=\"2\"/>\n<path class=\"g\" d=\"M40 40v20a14 14 0 0 0 28 0V40M54 74v18a12 12 0 0 0 24 0v-6\"/><circle class=\"g\" cx=\"78\" cy=\"82\" r=\"5\"/>\n<path class=\"l\" d=\"M36 40h8M64 40h8\"/>\n<path class=\"g\" d=\"M190 34v62M174 96h32M168 50h44\"/>\n<path class=\"l\" d=\"M168 50l-8 22h16zM212 50l-8 22h16z\"/>\n<path class=\"l\" d=\"M160 72a8 4 0 0 0 16 0M204 72a8 4 0 0 0 16 0\"/></svg>", "user": "<svg viewBox=\"0 0 240 132\" aria-hidden=\"true\"><path class=\"l d\" d=\"M14 118H226\"/>\n<rect class=\"l lf\" x=\"70\" y=\"56\" width=\"92\" height=\"60\" rx=\"8\"/>\n<path class=\"l\" d=\"M70 72h80a12 12 0 0 1 12 12v8a12 12 0 0 1-12 12H70\"/>\n<rect class=\"g gf\" x=\"138\" y=\"78\" width=\"30\" height=\"22\" rx=\"6\"/><circle class=\"g\" cx=\"150\" cy=\"89\" r=\"3\"/>\n<circle class=\"g gf\" cx=\"102\" cy=\"38\" r=\"11\"/><circle class=\"g gf\" cx=\"128\" cy=\"24\" r=\"9\"/>\n<circle class=\"g\" cx=\"102\" cy=\"38\" r=\"6\"/><circle class=\"g\" cx=\"128\" cy=\"24\" r=\"4.5\"/>\n<path class=\"g\" d=\"M190 50c0-6 8-8 10-2 2-6 10-4 10 2 0 8-10 12-10 16-0-4-10-8-10-16z\"/>\n<circle class=\"l\" cx=\"44\" cy=\"44\" r=\"2\"/><circle class=\"l\" cx=\"206\" cy=\"96\" r=\"2\"/></svg>", "shield": "<svg viewBox=\"0 0 240 132\" aria-hidden=\"true\"><path class=\"l d\" d=\"M14 118H226\"/>\n<rect class=\"l lf\" x=\"44\" y=\"62\" width=\"50\" height=\"56\" rx=\"3\"/>\n<path class=\"l\" d=\"M40 64l29-22 29 22\"/>\n<rect class=\"l\" x=\"62\" y=\"96\" width=\"14\" height=\"22\" rx=\"1\"/><rect class=\"l\" x=\"52\" y=\"74\" width=\"10\" height=\"9\" rx=\"1\"/><rect class=\"l\" x=\"76\" y=\"74\" width=\"10\" height=\"9\" rx=\"1\"/>\n<path class=\"g gf\" d=\"M150 22l38 14v26c0 24-17 42-38 50-21-8-38-26-38-50V36z\"/>\n<path class=\"g\" d=\"M134 66l12 12 22-24\"/>\n<path class=\"l\" d=\"M100 52c10-14 18-18 26-20\"/><path class=\"l\" d=\"M120 28l7 4-4 7\"/></svg>", "private": "<svg viewBox=\"0 0 240 132\" aria-hidden=\"true\"><path class=\"l d\" d=\"M14 118H226\"/>\n<path class=\"l\" d=\"M40 72l22-16 18 6 14-8 22 16\"/>\n<path class=\"l\" d=\"M40 72l26 26a5 5 0 0 0 7-7l-4-4M73 87l5 5a5 5 0 0 0 7-7l-4-4M81 81l4 4a5 5 0 0 0 7-7l-8-8M92 70l4 4a5 5 0 0 0 7-7l-7-7\"/>\n<path class=\"l\" d=\"M116 70l-12 12\"/>\n<ellipse class=\"l lf\" cx=\"170\" cy=\"110\" rx=\"22\" ry=\"7\"/><ellipse class=\"l lf\" cx=\"170\" cy=\"100\" rx=\"22\" ry=\"7\"/><ellipse class=\"g gf\" cx=\"170\" cy=\"90\" rx=\"22\" ry=\"7\"/><ellipse class=\"g gf\" cx=\"170\" cy=\"80\" rx=\"22\" ry=\"7\"/>\n<circle class=\"g gf\" cx=\"196\" cy=\"44\" r=\"14\"/><path class=\"g\" d=\"M190 38h12M190 43h12M193 38c7 0 7 9 0 9h-2l9 10\"/>\n<circle class=\"l\" cx=\"140\" cy=\"36\" r=\"2\"/></svg>"};
   var grid = document.getElementById("solGrid");
-  grid.innerHTML = LOANS.map(function(l,i){
-    return '<button class="sol rv" type="button" data-loan="'+i+'"><span class="art">'+ART[l[2]]+'</span><span class="sol-body"><h3>'+l[0]+'</h3><p>'+l[1]+'</p><span class="go">Enquire now '+ARROW+'</span></span></button>';
-  }).join("");
+  var GROUPS = [
+    ["For Your Property", ["Loan Against Property","Home Loan","Commercial Property Loan","Stress Property Resolution"]],
+    ["For Your Business", ["Working Capital Loan","Project Finance","Business Loan","Private Funding"]],
+    ["For You", ["Personal Loan","Professional Loan"]]
+  ];
+  var FOR = {
+    "Loan Against Property":"Business owners, self-employed and salaried property owners.",
+    "Home Loan":"Buying, building or upgrading your home.",
+    "Commercial Property Loan":"Businesses buying offices, shops, showrooms or warehouses.",
+    "Stress Property Resolution":"Property owners facing repayment pressure on a property loan.",
+    "Working Capital Loan":"Traders, manufacturers and service businesses.",
+    "Project Finance":"Builders and real estate developers.",
+    "Business Loan":"Growing businesses ready for their next step.",
+    "Private Funding":"Businesses and individuals who need flexible funding.",
+    "Personal Loan":"Salaried professionals with planned or urgent needs.",
+    "Professional Loan":"Doctors, CAs and advocates growing their practice."
+  };
+  var byName = {}; LOANS.forEach(function(l,i){ byName[l[0]] = i; });
+  var spotSel = 0;
+  function spotPanel(i){
+    var l = LOANS[i], g = GROUPS.filter(function(G){ return G[1].indexOf(l[0]) > -1; })[0][0];
+    var calcBtn = l[0] === "Stress Property Resolution" ? "" : '<button class="sp-calc" type="button" data-calc="'+i+'">Calculate EMI</button>';
+    return '<div class="sp-art">'+ART[l[2]]+'</div><div class="sp-body"><span class="sp-eyebrow">'+g+'</span><h3>'+l[0]+'</h3><p class="sp-desc">'+l[1]+'</p>'+
+      '<p class="sp-for"><b>Ideal for</b>'+FOR[l[0]]+'</p><div class="sp-ctas"><button class="btn btn-gold" type="button" data-enq="'+i+'">Enquire now</button>'+calcBtn+'</div></div>';
+  }
+  grid.innerHTML = '<div class="sp-list" role="tablist" aria-label="Our solutions">' + GROUPS.map(function(G){
+    return '<div class="sp-group"><span class="sp-glabel">'+G[0]+'</span>' + G[1].map(function(n){
+      var i = byName[n];
+      return '<button class="sp-item" type="button" role="tab" data-i="'+i+'" aria-selected="'+(i===spotSel)+'"><span>'+n+'</span>'+ARROW+'</button>';
+    }).join("") + '</div>';
+  }).join("") + '</div><div class="sp-panel" id="spPanel" role="tabpanel" aria-live="polite">' + spotPanel(spotSel) + '</div>';
 
   /* documents */
   var DOCS = {
@@ -1177,12 +1188,33 @@ document.querySelectorAll(".ln-track").forEach(function(t){
   document.querySelectorAll("[data-open]").forEach(function(a){
     a.addEventListener("click", function(){ startFlow(a.dataset.open); });
   });
-  grid.querySelectorAll(".sol").forEach(function(c){
-    c.addEventListener("click", function(){
-      startFlow("customer", {key:"need", val:LOAN_NAMES[+c.dataset.loan]});
-      document.getElementById("enquire").scrollIntoView({behavior:"smooth"});
+  (function(){
+    var panel = document.getElementById("spPanel"), items = grid.querySelectorAll(".sp-item");
+    var mq = window.matchMedia("(max-width: 860px)");
+    function place(){
+      var active = grid.querySelector('.sp-item[aria-selected="true"]');
+      if(mq.matches){ active.insertAdjacentElement("afterend", panel); }
+      else { grid.appendChild(panel); }
+    }
+    function select(i, scroll){
+      var same = i === spotSel;
+      spotSel = i;
+      items.forEach(function(b){ b.setAttribute("aria-selected", +b.dataset.i === i ? "true" : "false"); });
+      if(!same){ panel.innerHTML = spotPanel(i); panel.classList.remove("sp-in"); void panel.offsetWidth; panel.classList.add("sp-in"); }
+      place();
+    }
+    items.forEach(function(b){
+      b.addEventListener("click", function(){ select(+b.dataset.i); });
+      b.addEventListener("mouseenter", function(){ if(!mq.matches && window.matchMedia("(hover: hover)").matches) select(+b.dataset.i); });
     });
-  });
+    (mq.addEventListener ? mq.addEventListener("change", place) : mq.addListener(place));
+    place();
+    grid.addEventListener("click", function(e){
+      var en = e.target.closest("[data-enq]"), ca = e.target.closest("[data-calc]");
+      if(en){ startFlow("customer", {key:"need", val:LOAN_NAMES[+en.dataset.enq]}); document.getElementById("enquire").scrollIntoView({behavior:"smooth"}); }
+      if(ca && window.__openCalc){ window.__openCalc(LOAN_NAMES[+ca.dataset.calc]); }
+    });
+  })();
 
 
   /* ===== Plan your loan: step-by-step calculators ===== */
@@ -1361,6 +1393,11 @@ document.querySelectorAll(".ln-track").forEach(function(t){
       document.getElementById("cGo").addEventListener("click", function(){ goEnquire(amount, note); });
       document.getElementById("cAgain").addEventListener("click", function(){ var loan = S.loan, keep = {rate:S.rate, ten:S.ten, amt:S.amt, prop:S.prop, inc:S.inc, ex:S.ex, profile:S.profile}; var tool = S.tool === "emi" ? "elig" : "emi"; reset(); Object.assign(S, keep); S.tool = tool; S.loan = loan; S.step = 1; if(T[loan].biz) S.profile = "self"; render(); });
     }
+    window.__openCalc = function(loan){
+      if(!T[loan]) return;
+      reset(); var t = T[loan]; S.tool = "emi"; S.loan = loan; S.rate = t.r; S.ten = t.t; S.amt = t.a[2]; S.prop = t.prop ? Math.max(t.a[2]*1.6, 2500000) : 0; if(t.biz) S.profile = "self"; S.step = 1; render();
+      document.getElementById("calculator").scrollIntoView({behavior:"smooth"});
+    };
     chooser();
     document.querySelectorAll(".pt[data-tool]").forEach(function(b){ b.addEventListener("click", function(){ reset(); S.tool = b.dataset.tool; render(); box.scrollIntoView({behavior:"smooth", block:"center"}); }); });
   })();
