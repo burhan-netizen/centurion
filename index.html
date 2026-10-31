@@ -588,6 +588,42 @@ footer .legal{display:grid;gap:0;padding-block:0;font-size:13.5px}
   .ci-box input{width:96px}
   .chips button{padding:7px 12px;font-size:13px}
 }
+
+/* ===== calculators as step flow ===== */
+.plan .wrap:first-child{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(36px,6vw,80px);align-items:start}
+.plan-tools{display:grid;gap:12px;margin-top:30px}
+.pt{width:100%;text-align:left;cursor:pointer;font:inherit;color:inherit;transition:border-color .2s,transform .2s;display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:center;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.pt:hover{border-color:var(--gold);transform:translateY(-2px)}
+.pt-ic{width:44px;height:44px;border-radius:12px;background:var(--navy-800);display:grid;place-items:center}
+.pt-ic svg{width:21px;height:21px;stroke:var(--gold);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.pt b{display:block;font-family:var(--f-display);font-size:15.5px;font-weight:600}
+.pt span{font-size:14px;color:var(--muted)}
+.calc-flow{min-height:460px}
+.calc-flow .choose .choice span:last-child{font-size:14px}
+.opts-sm{grid-template-columns:1fr 1fr;gap:8px}
+.opts-sm .opt{padding:12px 14px;font-size:14.5px}
+.cstep .cfs{display:grid;gap:22px}
+.cf{display:grid;gap:10px}
+.cstep .ci-scale{margin-top:4px}
+.calc-flow input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--gold) var(--p,50%),var(--line) var(--p,50%));outline:none;margin:4px 0}
+.calc-flow input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--white);border:2px solid var(--gold);box-shadow:0 4px 10px -2px rgba(10,26,54,.35);cursor:pointer}
+.calc-flow input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--white);border:2px solid var(--gold);cursor:pointer}
+.rate-tag{font-family:var(--f-body);font-weight:500;color:#9A7420;background:#FBF3DD;border-radius:999px;padding:3px 10px;margin-left:6px;font-size:11.5px}
+.cres{display:flex;flex-direction:column;gap:14px;flex:1}
+.res{background:radial-gradient(360px 220px at 100% 0%,rgba(217,169,59,.16),transparent 70%),linear-gradient(160deg,var(--navy-700),var(--navy-900));color:var(--on-dark);border-radius:18px;padding:22px 22px 18px;display:grid;gap:12px}
+.res .co-big{font-size:clamp(30px,3.6vw,40px)}
+.res .co-rows div{padding:9px 0;font-size:14px}
+.res .co-low{margin:4px 0 2px}
+.co-nudge2{background:#FBF6E9;border:1px solid #F0DFAE;border-radius:14px;padding:12px 16px;font-size:14px;line-height:1.55;color:var(--ink)}
+.co-nudge2 b{color:#9A7420}
+.res-ctas{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}
+.res-ctas .btn{width:100%;height:48px;font-size:14.5px}
+.res-wa{border:1px solid var(--line);color:var(--ink);background:var(--white)}
+.res-wa:hover{border-color:#25D366;color:#128C4B}
+.res-again{align-self:center;font-family:var(--f-display);font-weight:600;color:var(--navy-700)}
+.calc-note2{font-size:12.5px;color:var(--muted);margin:22px 0 0;text-align:right}
+@media (max-width:860px){.plan .wrap:first-child{grid-template-columns:1fr}.calc-note2{text-align:left}}
+@media (max-width:640px){.opts-sm{grid-template-columns:1fr 1fr}.opts-sm .opt{font-size:13.5px;padding:11px 12px}.res-ctas{grid-template-columns:1fr}.plan-tools{display:none}}
 </style>
 </head>
 <body>
@@ -599,7 +635,7 @@ footer .legal{display:grid;gap:0;padding-block:0;font-size:13.5px}
     </a>
     <nav class="nav" aria-label="Main">
       <a href="#solutions">Solutions</a>
-      <a href="#calculator">EMI Calculator</a>
+      <a href="#calculator">Calculators</a>
       <a href="#why">Why Centurion</a>
       <a href="#process">How It Works</a>
       <a href="#partners">Partners</a>
@@ -734,61 +770,18 @@ footer .legal{display:grid;gap:0;padding-block:0;font-size:13.5px}
   <!-- PLAN YOUR LOAN -->
   <section class="sec plan" id="calculator">
     <div class="wrap">
-      <div class="sec-head rv">
+      <div class="plan-intro rv">
         <p class="eyebrow">Plan Your Loan</p>
-        <h2 class="h2">Know your numbers before you apply.</h2>
-        <p class="lead">Check your monthly EMI or an indicative eligibility in seconds, then let our advisors find you the best offer.</p>
-      </div>
-      <div class="calc rv">
-        <div class="calc-tabs" role="tablist" aria-label="Calculator">
-          <button role="tab" id="ct-emi" aria-selected="true" data-mode="emi">EMI Calculator</button>
-          <button role="tab" id="ct-elig" aria-selected="false" data-mode="elig">Eligibility Check</button>
+        <h2 class="h2" style="margin-top:16px">Know your numbers before you apply.</h2>
+        <p class="lead" style="margin-top:16px">Two quick tools. Pick one, answer a few taps and get your answer in seconds.</p>
+        <div class="plan-tools">
+          <button type="button" class="pt" data-tool="emi"><span class="pt-ic"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M8 15h2M12 15h2M16 11v4"/></svg></span><div><b>EMI Calculator</b><span>See your monthly EMI and total interest.</span></div></button>
+          <button type="button" class="pt" data-tool="elig"><span class="pt-ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><div><b>Eligibility Check</b><span>Find out how much you could borrow.</span></div></button>
         </div>
-        <div class="calc-body">
-          <div class="calc-in">
-            <div class="ci-group">
-              <span class="ci-label">Loan type</span>
-              <div class="chips" id="cLoan"></div>
-            </div>
-            <div class="ci-group elig-only" id="cProfileWrap">
-              <span class="ci-label">You are</span>
-              <div class="seg" id="cProfile">
-                <button type="button" data-p="sal" aria-pressed="true">Salaried</button>
-                <button type="button" data-p="self" aria-pressed="false">Self-employed</button>
-              </div>
-            </div>
-            <div class="ci-group emi-only">
-              <div class="ci-row"><label class="ci-label" for="cAmtBox">Loan amount</label><div class="ci-box"><span>₹</span><input id="cAmtBox" inputmode="numeric"></div></div>
-              <input type="range" id="cAmt" min="0" max="1000" step="1" aria-label="Loan amount">
-              <div class="ci-scale"><span id="cAmtMin"></span><span id="cAmtMax"></span></div>
-            </div>
-            <div class="ci-group elig-only">
-              <div class="ci-row"><label class="ci-label" for="cIncBox" id="cIncLabel">Net monthly income</label><div class="ci-box"><span>₹</span><input id="cIncBox" inputmode="numeric"></div></div>
-              <input type="range" id="cInc" min="0" max="1000" step="1" aria-label="Monthly income">
-            </div>
-            <div class="ci-group elig-only">
-              <div class="ci-row"><label class="ci-label" for="cEmiBox">Existing EMIs per month</label><div class="ci-box"><span>₹</span><input id="cEmiBox" inputmode="numeric"></div></div>
-              <input type="range" id="cExEmi" min="0" max="1000" step="1" aria-label="Existing EMIs">
-            </div>
-            <div class="ci-group elig-only" id="cPropWrap">
-              <div class="ci-row"><label class="ci-label" for="cPropBox">Property value</label><div class="ci-box"><span>₹</span><input id="cPropBox" inputmode="numeric"></div></div>
-              <input type="range" id="cProp" min="0" max="1000" step="1" aria-label="Property value">
-            </div>
-            <div class="ci-group">
-              <div class="ci-row"><label class="ci-label" for="cRateBox">Interest rate <small id="cRateNote"></small></label><div class="ci-box"><input id="cRateBox" inputmode="decimal"><span>%</span></div></div>
-              <input type="range" id="cRate" min="6" max="30" step="0.05" aria-label="Interest rate">
-            </div>
-            <div class="ci-group">
-              <div class="ci-row"><label class="ci-label" for="cTenBox">Tenure</label><div class="ci-box"><input id="cTenBox" inputmode="numeric"><span>years</span></div></div>
-              <input type="range" id="cTen" min="1" max="20" step="1" aria-label="Tenure in years">
-              <div class="ci-scale"><span>1 year</span><span id="cTenMax"></span></div>
-            </div>
-          </div>
-          <div class="calc-out" id="cOut" aria-live="polite"></div>
-        </div>
-        <p class="calc-note">Indicative figures based on typical market rates as of October 2026. Actual rates, eligibility and terms depend on the lender's assessment.</p>
       </div>
+      <div class="flow calc-flow rv" id="calcFlow" aria-live="polite"></div>
     </div>
+    <div class="wrap"><p class="calc-note2">Indicative figures based on typical market rates as of October 2026. Actual rates, eligibility and terms depend on the lender's assessment.</p></div>
   </section>
 
   <!-- WHY -->
@@ -1192,10 +1185,9 @@ document.querySelectorAll(".ln-track").forEach(function(t){
   });
 
 
-  /* ===== Plan your loan calculators ===== */
+  /* ===== Plan your loan: step-by-step calculators ===== */
   (function(){
-    var calc = document.querySelector(".calc"); if(!calc) return;
-    // starting rate, default tenure (yrs), max tenure (yrs), amount min/max/default, property cap, business-only income
+    var box = document.getElementById("calcFlow"); if(!box) return;
     var T = {
       "Loan Against Property":   {r:8.75, t:12, max:20, a:[500000,100000000,5000000], prop:"lap"},
       "Home Loan":               {r:7.25, t:20, max:35, a:[500000,100000000,4000000], prop:"home"},
@@ -1207,10 +1199,10 @@ document.querySelectorAll(".ln-track").forEach(function(t){
       "Commercial Property Loan":{r:9,    t:12, max:20, a:[1000000,200000000,10000000], prop:"com"},
       "Professional Loan":       {r:11,   t:5,  max:12, a:[100000,10000000,2500000]}
     };
-    var names = Object.keys(T);
-    var st = {mode:"emi", loan:"Home Loan", profile:"sal", amt:0, inc:100000, ex:0, prop:0, rate:0, ten:0};
-    var $ = function(id){ return document.getElementById(id); };
-    var out = $("cOut");
+    var NAMES = Object.keys(T);
+    var S;
+    function reset(){ S = {tool:null, step:0, loan:null, profile:null, amt:0, inc:100000, ex:0, prop:0, rate:0, ten:0}; }
+    reset();
 
     function inr(n){ return "₹" + Math.round(n).toLocaleString("en-IN"); }
     function short(n){
@@ -1218,141 +1210,159 @@ document.querySelectorAll(".ln-track").forEach(function(t){
       if(n >= 1e5) return "₹" + (n/1e5).toFixed(n >= 1e6 ? 0 : 1).replace(/\.0$/,"") + " L";
       return inr(n);
     }
-    function roundLakh(n, down){ var u = n >= 1e7 ? 1e6 : 1e5; return (down ? Math.floor(n/u) : Math.ceil(n/u)) * u; }
     function emi(P, rate, yrs){ var r = rate/1200, n = yrs*12; if(r === 0) return P/n; var f = Math.pow(1+r, n); return P*r*f/(f-1); }
     function pv(E, rate, yrs){ var r = rate/1200, n = yrs*12; if(r === 0) return E*n; var f = Math.pow(1+r, n); return E*(f-1)/(r*f); }
-    // log scale sliders
     function toPos(v, lo, hi){ return Math.round(1000 * Math.log(v/lo) / Math.log(hi/lo)); }
-    function fromPos(p, lo, hi){ var v = lo * Math.pow(hi/lo, p/1000); var step = v >= 1e7 ? 1e5 : v >= 1e6 ? 5e4 : v >= 1e5 ? 1e4 : 1e3; return Math.round(v/step)*step; }
-    function fill(el){ var p = (el.value - el.min) / (el.max - el.min) * 100; el.style.setProperty("--p", p + "%"); }
-    function num(s){ return parseFloat(String(s).replace(/[^0-9.]/g,"")) || 0; }
-    function fmtBox(n){ return Math.round(n).toLocaleString("en-IN"); }
+    function fromPos(p, lo, hi){ var v = lo * Math.pow(hi/lo, p/1000); var st = v >= 1e7 ? 1e5 : v >= 1e6 ? 5e4 : v >= 1e5 ? 1e4 : 1e3; return Math.round(v/st)*st; }
+    function fill(el){ el.style.setProperty("--p", ((el.value - el.min) / (el.max - el.min) * 100) + "%"); }
+    function num(v){ return parseFloat(String(v).replace(/[^0-9.]/g,"")) || 0; }
+    function fmt(n){ return Math.round(n).toLocaleString("en-IN"); }
 
-    var ranges = {inc:[10000,10000000], ex:[0,0], prop:[500000,500000000]};
-    function setLog(sl, box, v, lo, hi){ sl.value = toPos(Math.max(lo, Math.min(hi, v||lo)), lo, hi); fill(sl); box.value = fmtBox(v); }
-
-    // loan chips
-    $("cLoan").innerHTML = names.map(function(n){ return '<button type="button" data-l="'+esc(n)+'" aria-pressed="'+(n===st.loan)+'">'+n+'</button>'; }).join("");
-    $("cLoan").addEventListener("click", function(e){ var b = e.target.closest("button"); if(!b) return; pickLoan(b.dataset.l.replace(/&amp;/g,"&")); });
-
-    function pickLoan(n){
-      st.loan = n; var c = T[n];
-      $("cLoan").querySelectorAll("button").forEach(function(b){ b.setAttribute("aria-pressed", b.textContent === n ? "true" : "false"); });
-      st.rate = c.r; st.ten = c.t; st.amt = c.a[2];
-      $("cRateNote").textContent = "Starting from " + c.r + "%";
-      $("cTen").max = c.max; $("cTenMax").textContent = c.max + " years";
-      $("cAmtMin").textContent = short(c.a[0]); $("cAmtMax").textContent = short(c.a[1]);
-      if(c.biz){ st.profile = "self"; }
-      $("cProfileWrap").style.display = c.biz ? "none" : "";
-      $("cPropWrap").style.display = c.prop ? "" : "none";
-      if(c.prop && !st.prop) st.prop = Math.max(c.a[2]*1.6, 2500000);
-      syncProfile(); syncAll(); render();
-    }
-    function syncProfile(){
-      $("cProfile").querySelectorAll("button").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.p === st.profile ? "true" : "false"); });
-      $("cIncLabel").textContent = st.profile === "sal" ? "Net monthly income" : "Average monthly net profit";
-    }
-    $("cProfile").addEventListener("click", function(e){ var b = e.target.closest("button"); if(!b) return; st.profile = b.dataset.p; syncProfile(); render(); });
-
-    function syncAll(){
-      var c = T[st.loan];
-      setLog($("cAmt"), $("cAmtBox"), st.amt, c.a[0], c.a[1]);
-      setLog($("cInc"), $("cIncBox"), st.inc, ranges.inc[0], ranges.inc[1]);
-      $("cExEmi").min = 0; $("cExEmi").max = Math.max(1000, Math.round(st.inc)); $("cExEmi").step = 500;
-      $("cExEmi").value = Math.min(st.ex, $("cExEmi").max); fill($("cExEmi")); $("cEmiBox").value = fmtBox(st.ex);
-      setLog($("cProp"), $("cPropBox"), st.prop || ranges.prop[0], ranges.prop[0], ranges.prop[1]);
-      $("cRate").value = st.rate; fill($("cRate")); $("cRateBox").value = (+st.rate).toFixed(2).replace(/\.?0+$/,"");
-      $("cTen").value = Math.min(st.ten, +$("cTen").max); fill($("cTen")); $("cTenBox").value = st.ten;
+    function steps(){
+      var c = S.loan ? T[S.loan] : {};
+      if(S.tool === "emi") return ["loan","amount","terms"];
+      var l = ["loan"]; if(!c.biz) l.push("profile"); l.push("income"); if(c.prop) l.push("property"); l.push("terms"); return l;
     }
 
-    // slider + box wiring
-    function wireLog(slId, boxId, key, getRange){
-      var sl = $(slId), box = $(boxId);
-      sl.addEventListener("input", function(){ var r = getRange(); st[key] = fromPos(+sl.value, r[0], r[1]); box.value = fmtBox(st[key]); fill(sl); if(key==="inc"){ $("cExEmi").max = Math.max(1000, st.inc); fill($("cExEmi")); } render(); });
-      box.addEventListener("input", function(){ var v = num(box.value); st[key] = v; var r = getRange(); sl.value = toPos(Math.max(r[0], Math.min(r[1], v||r[0])), r[0], r[1]); fill(sl); render(); });
-      box.addEventListener("blur", function(){ box.value = fmtBox(st[key]); });
-    }
-    wireLog("cAmt","cAmtBox","amt", function(){ var c=T[st.loan]; return [c.a[0], c.a[1]]; });
-    wireLog("cInc","cIncBox","inc", function(){ return ranges.inc; });
-    wireLog("cProp","cPropBox","prop", function(){ return ranges.prop; });
-    $("cExEmi").addEventListener("input", function(){ st.ex = +this.value; $("cEmiBox").value = fmtBox(st.ex); fill(this); render(); });
-    $("cEmiBox").addEventListener("input", function(){ st.ex = num(this.value); $("cExEmi").value = Math.min(st.ex, $("cExEmi").max); fill($("cExEmi")); render(); });
-    $("cEmiBox").addEventListener("blur", function(){ this.value = fmtBox(st.ex); });
-    $("cRate").addEventListener("input", function(){ st.rate = +this.value; $("cRateBox").value = st.rate.toFixed(2).replace(/\.?0+$/,""); fill(this); render(); });
-    $("cRateBox").addEventListener("input", function(){ var v = num(this.value); if(v > 0 && v < 60){ st.rate = v; $("cRate").value = Math.max(6, Math.min(30, v)); fill($("cRate")); render(); } });
-    $("cTen").addEventListener("input", function(){ st.ten = +this.value; $("cTenBox").value = st.ten; fill(this); render(); });
-    $("cTenBox").addEventListener("input", function(){ var v = Math.round(num(this.value)); var mx = T[st.loan].max; if(v >= 1){ st.ten = Math.min(v, mx); $("cTen").value = st.ten; fill($("cTen")); render(); } });
-    $("cTenBox").addEventListener("blur", function(){ this.value = st.ten; });
-
-    // tabs
-    calc.querySelectorAll(".calc-tabs button").forEach(function(b){
-      b.addEventListener("click", function(){
-        st.mode = b.dataset.mode; calc.setAttribute("data-mode", st.mode);
-        calc.querySelectorAll(".calc-tabs button").forEach(function(x){ x.setAttribute("aria-selected", x === b ? "true" : "false"); });
-        render();
-      });
-    });
-
-    function amountBucket(a){ return a <= 2500000 ? "Up to ₹25 Lakh" : a <= 10000000 ? "₹25 Lakh to ₹1 Crore" : a <= 50000000 ? "₹1 Crore to ₹5 Crore" : "Above ₹5 Crore"; }
-    function profileLabel(){ return st.profile === "sal" ? "Salaried" : (T[st.loan].biz ? "Business owner" : "Self-employed"); }
-    function goEnquire(amount, note){
-      startFlow("customer", {list:[{key:"need", val:st.loan}, {key:"amount", val:amountBucket(amount)}], calc:note});
-      document.getElementById("enquire").scrollIntoView({behavior:"smooth"});
+    function chooser(){
+      reset();
+      box.innerHTML = '<div class="fade-in"><h3 class="q">What would you like to check?</h3><p class="q-sub">Choose a tool to get started.</p>'+
+        '<div class="choose">'+
+        '<button class="choice" type="button" data-t="emi"><span class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M8 15h2M12 15h2M16 11v4"/></svg></span><b>Calculate my EMI</b><span>Monthly EMI, total interest and total payable.</span></button>'+
+        '<button class="choice" type="button" data-t="elig"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><b>Check my eligibility</b><span>An indicative idea of how much you could borrow.</span></button>'+
+        '</div></div>';
+      box.querySelectorAll("[data-t]").forEach(function(b){ b.addEventListener("click", function(){ S.tool = b.dataset.t; S.step = 0; render(); }); });
     }
 
-    function ctas(primary, amount, note){
-      var waText = "Hi Centurion, I used the calculator on your website. " + note + ". Please help me with the next steps.";
-      return '<div class="co-ctas"><button class="btn btn-gold" type="button" id="coGo">'+primary+'</button>'+
-        '<a class="btn co-wa" href="'+waLink(waText)+'" target="_blank" rel="noopener">Share on WhatsApp</a></div>';
+    function top(){
+      var l = steps(), n = l.length, i = S.step, pct = Math.round((i+1)/(n+1)*100);
+      var label = S.tool === "emi" ? "EMI Calculator" : "Eligibility Check";
+      return '<div class="flow-top"><button class="back" type="button" id="cBack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Back</button>'+
+        '<span class="step-count">'+label+' · '+(i+1)+' of '+n+'</span><div class="progress" aria-hidden="true"><i style="width:'+pct+'%"></i></div></div>';
     }
-    function bindCtas(amount, note){ var g = $("coGo"); if(g) g.addEventListener("click", function(){ goEnquire(amount, note); }); }
+    function next(){ S.step++; render(); }
+    function bindBack(){ document.getElementById("cBack").addEventListener("click", function(){ if(S.step === 0) chooser(); else { S.step--; render(); } }); }
+
+    function field(id, label, val, unit, pre){
+      return '<div class="cf"><div class="ci-row"><label class="ci-label" for="'+id+'Box">'+label+'</label><div class="ci-box">'+(pre ? '<span>'+pre+'</span>' : '')+'<input id="'+id+'Box" inputmode="decimal" value="'+val+'">'+(unit ? '<span>'+unit+'</span>' : '')+'</div></div>'+
+        '<input type="range" id="'+id+'" aria-label="'+label+'"></div>';
+    }
+    function wireLog(id, key, lo, hi){
+      var sl = document.getElementById(id), bx = document.getElementById(id+"Box");
+      sl.min = 0; sl.max = 1000; sl.step = 1; sl.value = toPos(Math.max(lo, Math.min(hi, S[key] || lo)), lo, hi); fill(sl);
+      sl.addEventListener("input", function(){ S[key] = fromPos(+sl.value, lo, hi); bx.value = fmt(S[key]); fill(sl); });
+      bx.addEventListener("input", function(){ S[key] = num(bx.value); sl.value = toPos(Math.max(lo, Math.min(hi, S[key] || lo)), lo, hi); fill(sl); });
+      bx.addEventListener("blur", function(){ bx.value = fmt(S[key]); });
+    }
+    function wireLin(id, key, lo, hi, step, dec){
+      var sl = document.getElementById(id), bx = document.getElementById(id+"Box");
+      sl.min = lo; sl.max = hi; sl.step = step; sl.value = S[key]; fill(sl);
+      var show = function(v){ return dec ? (+v).toFixed(2).replace(/\.?0+$/,"") : fmt(v); };
+      sl.addEventListener("input", function(){ S[key] = +sl.value; bx.value = show(S[key]); fill(sl); });
+      bx.addEventListener("input", function(){ var v = num(bx.value); if(v > 0){ S[key] = key === "ten" ? Math.min(Math.round(v), hi) : v; sl.value = Math.max(lo, Math.min(hi, S[key])); fill(sl); } });
+      bx.addEventListener("blur", function(){ bx.value = show(S[key]); });
+    }
+    function cont(label){ return '<div class="flow-actions"><button class="btn btn-navy" type="button" id="cNext">'+(label || "Continue")+' <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>'; }
 
     function render(){
-      var c = T[st.loan], rate = st.rate, yrs = st.ten;
-      if(!(rate > 0) || !(yrs > 0)){ return; }
-      if(st.mode === "emi"){
-        var P = st.amt; if(!(P > 0)){ out.innerHTML = '<p class="co-low">Enter a loan amount to see your EMI.</p>'; return; }
-        var E = emi(P, rate, yrs), total = E*yrs*12, interest = total - P;
-        var pp = Math.round(P/total*100);
-        var note = st.loan + ", " + short(P) + " at " + rate + "% for " + yrs + " years, EMI about " + inr(E);
-        var html = '<span class="co-label">Your monthly EMI</span><div class="co-big">'+inr(E)+' <small>/ month</small></div>'+
-          '<div class="co-rows"><div><span>Principal amount</span><b>'+inr(P)+'</b></div><div><span>Total interest</span><b>'+inr(interest)+'</b></div><div><span>Total amount payable</span><b>'+inr(total)+'</b></div></div>'+
+      if(!S.tool){ chooser(); return; }
+      var l = steps();
+      if(S.step >= l.length){ result(); return; }
+      var k = l[S.step], c = S.loan ? T[S.loan] : null, h = top() + '<div class="fade-in cstep">';
+      if(k === "loan"){
+        h += '<h3 class="q">Which loan are you planning?</h3><p class="q-sub">We\'ll use typical market rates for it.</p><div class="opts opts-sm">'+
+          NAMES.map(function(n){ return '<button class="opt" type="button" aria-pressed="'+(S.loan===n)+'" data-v="'+esc(n)+'"><span>'+n+'</span><span class="tick"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></button>'; }).join("")+'</div></div>';
+        box.innerHTML = h; bindBack();
+        box.querySelectorAll(".opt").forEach(function(b){ b.addEventListener("click", function(){
+          var n = b.dataset.v.replace(/&amp;/g,"&");
+          if(S.loan !== n){ var t = T[n]; S.loan = n; S.rate = t.r; S.ten = t.t; S.amt = t.a[2]; S.prop = t.prop ? Math.max(t.a[2]*1.6, 2500000) : 0; if(t.biz) S.profile = "self"; }
+          box.querySelectorAll(".opt").forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+          setTimeout(next, 220);
+        }); });
+        return;
+      }
+      if(k === "profile"){
+        h += '<h3 class="q">Which best describes you?</h3><p class="q-sub">Banks assess salaried and self-employed income differently.</p><div class="opts">'+
+          [["sal","Salaried"],["self","Self-employed / Business owner"]].map(function(o){ return '<button class="opt" type="button" aria-pressed="'+(S.profile===o[0])+'" data-v="'+o[0]+'"><span>'+o[1]+'</span><span class="tick"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></button>'; }).join("")+'</div></div>';
+        box.innerHTML = h; bindBack();
+        box.querySelectorAll(".opt").forEach(function(b){ b.addEventListener("click", function(){ S.profile = b.dataset.v; box.querySelectorAll(".opt").forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); }); setTimeout(next, 220); }); });
+        return;
+      }
+      if(k === "amount"){
+        h += '<h3 class="q">How much do you need?</h3><p class="q-sub">Slide or type the amount.</p>'+field("cA","Loan amount",fmt(S.amt),"","₹")+
+          '<div class="ci-scale"><span>'+short(c.a[0])+'</span><span>'+short(c.a[1])+'</span></div>'+cont()+'</div>';
+        box.innerHTML = h; bindBack(); wireLog("cA","amt",c.a[0],c.a[1]);
+      }
+      if(k === "income"){
+        var lab = S.profile === "sal" ? "Net monthly income (take-home)" : "Average monthly net profit";
+        h += '<h3 class="q">Tell us about your income</h3><p class="q-sub">Monthly figures, roughly is fine.</p><div class="cfs">'+field("cI",lab,fmt(S.inc),"","₹")+field("cE","Existing EMIs per month",fmt(S.ex),"","₹")+'</div>'+cont()+'</div>';
+        box.innerHTML = h; bindBack(); wireLog("cI","inc",10000,10000000); wireLin("cE","ex",0,Math.max(50000, S.inc),500);
+      }
+      if(k === "property"){
+        h += '<h3 class="q">What is the property worth?</h3><p class="q-sub">Banks lend a share of the property\'s market value.</p>'+field("cP","Property value",fmt(S.prop),"","₹")+cont()+'</div>';
+        box.innerHTML = h; bindBack(); wireLog("cP","prop",500000,500000000);
+      }
+      if(k === "terms"){
+        h += '<h3 class="q">Rate and tenure</h3><p class="q-sub">Pre-filled with the typical starting rate for a '+esc(S.loan)+'. Adjust if you like.</p><div class="cfs">'+
+          field("cR",'Interest rate <small class="rate-tag">Starting from '+c.r+'%</small>',(+S.rate).toFixed(2).replace(/\.?0+$/,""),"%")+
+          field("cT","Tenure",S.ten,"years")+'</div>'+cont(S.tool === "emi" ? "Calculate EMI" : "Check eligibility")+'</div>';
+        box.innerHTML = h; bindBack(); wireLin("cR","rate",6,30,0.05,true); wireLin("cT","ten",1,c.max,1);
+      }
+      document.getElementById("cNext").addEventListener("click", function(){
+        if(k === "amount" && !(S.amt > 0)) return;
+        if(k === "income" && !(S.inc > 0)) return;
+        if(k === "terms" && !(S.rate > 0 && S.ten > 0)) return;
+        next();
+      });
+    }
+
+    function amountBucket(a){ return a <= 2500000 ? "Up to ₹25 Lakh" : a <= 10000000 ? "₹25 Lakh to ₹1 Crore" : a <= 50000000 ? "₹1 Crore to ₹5 Crore" : "Above ₹5 Crore"; }
+    function goEnquire(amount, note){
+      startFlow("customer", {list:[{key:"need", val:S.loan}, {key:"amount", val:amountBucket(amount)}], calc:note});
+      document.getElementById("enquire").scrollIntoView({behavior:"smooth"});
+    }
+    function result(){
+      var c = T[S.loan], rate = S.rate, yrs = S.ten, h = '', note = '', amount = 0, primary = '';
+      var head = '<div class="flow-top"><button class="back" type="button" id="cBack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Edit</button><span class="step-count">'+esc(S.loan)+'</span></div>';
+      if(S.tool === "emi"){
+        var P = S.amt, E = emi(P, rate, yrs), total = E*yrs*12, interest = total - P, pp = Math.round(P/total*100);
+        amount = P; primary = "Get My Best Rate";
+        note = S.loan + ", " + short(P) + " at " + rate + "% for " + yrs + " years, EMI about " + inr(E);
+        h = '<div class="res"><span class="co-label">Your monthly EMI</span><div class="co-big">'+inr(E)+' <small>/ month</small></div>'+
+          '<div class="co-rows"><div><span>Loan amount</span><b>'+inr(P)+'</b></div><div><span>Total interest</span><b>'+inr(interest)+'</b></div><div><span>Total payable</span><b>'+inr(total)+'</b></div></div>'+
           '<div class="co-bar" aria-hidden="true"><i style="width:'+pp+'%"></i><i style="width:'+(100-pp)+'%"></i></div>'+
-          '<div class="co-key"><span>Principal '+pp+'%</span><span>Interest '+(100-pp)+'%</span></div>';
-        if(rate > 1.5){
-          var save = total - emi(P, rate-1, yrs)*yrs*12;
-          if(save > 1000) html += '<div class="co-nudge">A rate just 1% lower could save you <b>'+short(save)+'</b> over this loan. Our advisors compare 100+ banks and NBFCs to find you the best rate.</div>';
-        }
-        out.innerHTML = html + ctas("Get My Best Rate", P, note);
-        bindCtas(P, note);
+          '<div class="co-key"><span>Principal '+pp+'%</span><span>Interest '+(100-pp)+'%</span></div></div>';
+        if(rate > 1.5){ var save = total - emi(P, rate-1, yrs)*yrs*12; if(save > 1000) h += '<div class="co-nudge2">A rate just 1% lower could save you <b>'+short(save)+'</b>. Our advisors compare 100+ banks and NBFCs to find you the best rate.</div>'; }
       } else {
-        var inc = st.inc, foir = st.profile === "sal" ? (inc > 100000 ? 0.6 : 0.5) : 0.65;
-        var maxE = inc*foir - st.ex;
-        var hi = maxE > 0 ? pv(maxE, rate, yrs) : 0;
-        var lo = maxE > 0 ? pv(maxE, rate + 1.5, yrs) : 0;
-        var cap = Infinity, pv_ = st.prop;
-        if(c.prop === "home"){ cap = Math.max(Math.min(pv_*0.9, 3000000), Math.min(pv_*0.8, 7500000), pv_*0.75 > 7500000 ? pv_*0.75 : 0); }
-        if(c.prop === "lap") cap = pv_*0.65;
-        if(c.prop === "com") cap = pv_*0.7;
+        var inc = S.inc, foir = S.profile === "sal" ? (inc > 100000 ? 0.6 : 0.5) : 0.65, maxE = inc*foir - S.ex;
+        var hi = maxE > 0 ? pv(maxE, rate, yrs) : 0, lo = maxE > 0 ? pv(maxE, rate + 1.5, yrs) : 0, cap = Infinity, V = S.prop;
+        if(c.prop === "home") cap = Math.max(Math.min(V*0.9, 3000000), Math.min(V*0.8, 7500000), V*0.75 > 7500000 ? V*0.75 : 0);
+        if(c.prop === "lap") cap = V*0.65;
+        if(c.prop === "com") cap = V*0.7;
         hi = Math.min(hi, cap); lo = Math.min(lo, cap);
         if(hi < 50000){
-          out.innerHTML = '<span class="co-label">Your eligibility</span><p class="co-low">Every case has a solution. Speak to our advisor to explore the right way forward for you.</p>' +
-            ctas("Talk to an Advisor", c.a[2], st.loan + ", eligibility check with " + profileLabel().toLowerCase() + " income of " + inr(inc) + " a month");
-          bindCtas(c.a[2], st.loan + ", eligibility check");
-          return;
+          amount = c.a[2]; primary = "Talk to an Advisor"; note = S.loan + ", eligibility check";
+          h = '<div class="res"><span class="co-label">Your eligibility</span><p class="co-low">Every case has a solution. Speak to our advisor to explore the right way forward for you.</p></div>';
+        } else {
+          var unit = function(n){ var u = n >= 1e7 ? 1e6 : 1e5; return Math.floor(n/u)*u; };
+          var L = unit(lo), H = unit(hi); if(L >= H) L = unit(H*0.88);
+          amount = H; primary = "Check My Exact Eligibility";
+          note = S.loan + ", indicative eligibility " + short(L) + " to " + short(H) + " (income " + inr(inc) + " a month, existing EMIs " + inr(S.ex) + ")";
+          h = '<div class="res"><span class="co-label">You may be eligible for</span><div class="co-big">'+short(L)+' <small>to</small> '+short(H)+'</div>'+
+            '<div class="co-rows"><div><span>EMI you can comfortably afford</span><b>'+inr(Math.max(0,maxE))+' / month</b></div><div><span>Rate and tenure</span><b>'+rate+'% · '+yrs+' years</b></div>'+(c.prop ? '<div><span>Property value</span><b>'+short(V)+'</b></div>' : '')+'</div></div>'+
+            '<div class="co-nudge2">Want your exact eligibility? We check it across <b>100+ banks and NBFCs</b>, free of charge.</div>';
         }
-        var L = roundLakh(lo, true), H = roundLakh(hi, true); if(L >= H) L = roundLakh(H*0.88, true);
-        var note = st.loan + ", indicative eligibility " + short(L) + " to " + short(H) + " (" + profileLabel() + ", income " + inr(inc) + " a month, existing EMIs " + inr(st.ex) + ")";
-        var html = '<span class="co-label">You may be eligible for</span><div class="co-big">'+short(L)+' <small>to</small> '+short(H)+'</div>'+
-          '<div class="co-rows"><div><span>EMI you can comfortably afford</span><b>'+inr(Math.max(0,maxE))+' / month</b></div><div><span>Tenure</span><b>'+yrs+' years</b></div>'+
-          (c.prop ? '<div><span>Property value considered</span><b>'+short(pv_)+'</b></div>' : '')+'</div>'+
-          '<div class="co-nudge">Want your exact eligibility? We check it across <b>100+ banks and NBFCs</b>, free of charge.</div>';
-        out.innerHTML = html + ctas("Check My Exact Eligibility", H, note);
-        bindCtas(H, note);
       }
+      var wa = waLink("Hi Centurion, I used the calculator on your website. " + note + ". Please help me with the next steps.");
+      box.innerHTML = head + '<div class="fade-in cres">' + h +
+        '<div class="res-ctas"><button class="btn btn-gold" type="button" id="cGo">'+primary+'</button><a class="btn res-wa" href="'+wa+'" target="_blank" rel="noopener">Share on WhatsApp</a></div>'+
+        '<button class="back res-again" type="button" id="cAgain">Try the '+(S.tool === "emi" ? "Eligibility Check" : "EMI Calculator")+'</button></div>';
+      document.getElementById("cBack").addEventListener("click", function(){ S.step = steps().length - 1; render(); });
+      document.getElementById("cGo").addEventListener("click", function(){ goEnquire(amount, note); });
+      document.getElementById("cAgain").addEventListener("click", function(){ var loan = S.loan, keep = {rate:S.rate, ten:S.ten, amt:S.amt, prop:S.prop, inc:S.inc, ex:S.ex, profile:S.profile}; var tool = S.tool === "emi" ? "elig" : "emi"; reset(); Object.assign(S, keep); S.tool = tool; S.loan = loan; S.step = 1; if(T[loan].biz) S.profile = "self"; render(); });
     }
-    calc.setAttribute("data-mode", "emi");
-    pickLoan(st.loan);
+    chooser();
+    document.querySelectorAll(".pt[data-tool]").forEach(function(b){ b.addEventListener("click", function(){ reset(); S.tool = b.dataset.tool; render(); box.scrollIntoView({behavior:"smooth", block:"center"}); }); });
   })();
 
   /* callback popup */
