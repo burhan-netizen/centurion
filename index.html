@@ -1355,12 +1355,19 @@ document.querySelectorAll(".ln-track").forEach(function(t){
   }
 
   /* open flows from CTAs and solution cards */
-  document.querySelectorAll("[data-open]").forEach(function(a){
-    a.addEventListener("click", function(){ startFlow(a.dataset.open); });
+  window.goEnquire = function(){
+    var mob = window.matchMedia("(max-width: 860px)").matches;
+    var el = document.getElementById(mob ? "flow" : "enquire");
+    var top = el.getBoundingClientRect().top + window.pageYOffset - (mob ? 90 : 84);
+    window.scrollTo({top: top, behavior: "smooth"});
+  };
+  document.addEventListener("click", function(e){
+    var a = e.target.closest("[data-open]"); if(!a) return;
+    e.preventDefault(); startFlow(a.dataset.open); window.goEnquire();
   });
   grid.addEventListener("click", function(e){
     var en = e.target.closest("[data-enq]");
-    if(en){ startFlow("customer", {key:"need", val:LOAN_NAMES[+en.dataset.enq]}); document.getElementById("enquire").scrollIntoView({behavior:"smooth"}); }
+    if(en){ startFlow("customer", {key:"need", val:LOAN_NAMES[+en.dataset.enq]}); window.goEnquire(); }
   });
 
 
@@ -1499,7 +1506,7 @@ document.querySelectorAll(".ln-track").forEach(function(t){
     function amountBucket(a){ return a <= 2500000 ? "Up to ₹25 Lakh" : a <= 10000000 ? "₹25 Lakh to ₹1 Crore" : a <= 50000000 ? "₹1 Crore to ₹5 Crore" : "Above ₹5 Crore"; }
     function goEnquire(amount, note){
       startFlow("customer", {list:[{key:"need", val:S.loan}, {key:"amount", val:amountBucket(amount)}], calc:note});
-      document.getElementById("enquire").scrollIntoView({behavior:"smooth"});
+      window.goEnquire();
     }
     function result(){
       var c = T[S.loan], rate = S.rate, yrs = S.ten, h = '', note = '', amount = 0, primary = '';
