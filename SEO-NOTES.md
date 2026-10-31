@@ -5,7 +5,7 @@
 |---|---|
 | business loan advisor India | Title, description, hero line, solutions, schema |
 | home loan consultant India | Title, description, hero line, solutions, schema |
-| loan against property | Title (property loans), description, hero, solutions, schema |
+| loan against property, stress property resolution, project finance for builders, private funding | Title (property loans), description, hero, solutions, schema |
 | loan advisory firm / loan consultant (Ahmedabad HQ) | About copy, FAQ, footer note, schema address |
 | working capital loan, project loan, commercial property loan | Solution cards, schema services |
 | professional loan for doctors, CAs, advocates | Solution card, schema |
