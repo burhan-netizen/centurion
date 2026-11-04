@@ -45,6 +45,7 @@ function layout({ ctx, preheader, title, intro, summaryRows, steps, ctaLabel, ct
         <td style="border-radius:999px;background:${GOLD}"><a href="${wa(ctx.whatsapp, ctaText)}" style="display:inline-block;padding:13px 24px;font:600 14px ${FONT};color:${NAVY_DEEP};text-decoration:none;white-space:nowrap">${esc(ctaLabel)}</a></td>
       </tr></table>
       <div style="padding-top:14px;font:14px ${FONT};color:${MUTED}">Prefer to talk? Call us on <a href="tel:+919274705844" style="font-weight:600;color:${NAVY};text-decoration:none">+91 92747 05844</a></div></td></tr>
+    <tr><td style="background:${PAPER};border-top:1px solid ${LINE};padding:14px 28px;font:italic 12.5px/1.5 ${FONT};color:${MUTED}">This is an auto-generated email. Please do not reply. For any queries, write to us at <a href="mailto:info@csventures.co.in" style="color:${NAVY};font-weight:600;text-decoration:none">info@csventures.co.in</a>.</td></tr>
     <tr><td style="background:${PAPER};border-top:1px solid ${LINE};padding:20px 28px">
       <div style="font:600 13px ${FONT};color:${INK}">Centurion Strategic Ventures Pvt Ltd</div>
       <div style="font:12px/1.6 ${FONT};color:${MUTED};padding-top:4px">Strategic Thinking. Sustainable Growth.<br>CIN U70200GJ2026PTC178120 · GSTIN 24AANCC8584H1Z6</div>

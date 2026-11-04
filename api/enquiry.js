@@ -7,7 +7,9 @@
 //
 // Environment variables (set in Vercel > Project > Settings > Environment Variables):
 //   RESEND_API_KEY        Resend API key (domain verified in Resend)
-//   FROM_EMAIL            e.g. "Centurion Strategic Ventures <hello@YOURDOMAIN.in>"
+//   FROM_EMAIL            e.g. "Centurion Strategic Ventures <noreply@csventures.co.in>"
+//   NOREPLY_FROM          optional, sender of customer confirmations (default noreply@csventures.co.in)
+//   REPLY_TO              optional, where customer replies go (default info@csventures.co.in)
 //   CUSTOMER_INBOX        inbox for customer and callback leads
 //   PARTNER_INBOX         inbox for partner leads
 //   SHEET_WEBHOOK_URL     Google Apps Script web app URL (optional until set up)
@@ -22,12 +24,12 @@ function clean(v, max = 200) {
   return String(v == null ? "" : v).replace(/[<>]/g, "").trim().slice(0, max);
 }
 
-async function sendEmail({ to, subject, html, replyTo }) {
+async function sendEmail({ to, subject, html, replyTo, from }) {
   if (!process.env.RESEND_API_KEY || !to) return { skipped: true };
   const r = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ from: process.env.FROM_EMAIL, to: [to], subject, html, reply_to: replyTo || undefined }),
+    body: JSON.stringify({ from: from || process.env.FROM_EMAIL, to: [to], subject, html, reply_to: replyTo || undefined }),
   });
   if (!r.ok) throw new Error(`Resend ${r.status}: ${await r.text()}`);
   return r.json();
@@ -86,7 +88,7 @@ module.exports = async function handler(req, res) {
   ];
   if (lead.email && type !== "callback") {
     const mail = type === "partner" ? partnerEmail(lead, ctx) : customerEmail(lead, ctx);
-    tasks.push(sendEmail({ to: lead.email, subject: mail.subject, html: mail.html, replyTo: inbox }));
+    tasks.push(sendEmail({ to: lead.email, subject: mail.subject, html: mail.html, replyTo: process.env.REPLY_TO || "info@csventures.co.in", from: process.env.NOREPLY_FROM || "Centurion Strategic Ventures <noreply@csventures.co.in>" }));
   }
   const results = await Promise.allSettled(tasks);
   results.forEach((r, i) => { if (r.status === "rejected") console.error("enquiry task", i, r.reason && r.reason.message); });
