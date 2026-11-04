@@ -838,23 +838,29 @@ footer .ft-h{font-family:var(--f-display);color:var(--navy-800);font-size:14px;f
 
 /* ===== leadership ===== */
 .leaders{padding-top:0}
-.ld-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
-.ld-card{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:30px 28px 28px;display:flex;flex-direction:column;gap:18px;transition:border-color .3s,box-shadow .3s,transform .3s}
-.ld-card:hover{border-color:rgba(217,169,59,.55);box-shadow:0 26px 50px -34px rgba(10,26,54,.45);transform:translateY(-3px)}
-.ld-top{display:flex;align-items:center;gap:16px}
-.ld-mono{flex:0 0 58px;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-weight:600;font-size:18px;letter-spacing:.06em;color:var(--gold);background:radial-gradient(circle at 30% 25%,var(--navy-700),var(--navy-900));box-shadow:inset 0 0 0 1.5px rgba(217,169,59,.55),0 0 0 4px var(--white),0 0 0 5px var(--line)}
-.ld-top h3{font-size:19px;font-weight:600;color:var(--ink);line-height:1.25}
-.ld-role{margin:4px 0 0;font-size:12.5px;font-weight:600;line-height:1.45;color:var(--gold-text);font-family:var(--f-display);letter-spacing:.01em}
-.ld-bio{margin:0;font-size:15px;line-height:1.65;color:var(--muted)}
-.ld-tags{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.ld-tags li{font-size:12.5px;font-weight:500;color:var(--navy-700);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
-.ld-prev{margin:0;font-size:13px;line-height:1.55;color:var(--muted);padding-top:14px;border-top:1px dashed var(--line)}
-.ld-prev span{display:block;font-family:var(--f-display);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--navy-700);margin-bottom:4px}
-.ld-wa{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:9px;height:44px;padding:0 20px 0 16px;border-radius:999px;border:1px solid var(--line);background:var(--white);color:var(--navy-800);font-family:var(--f-display);font-size:14px;font-weight:600;text-decoration:none;transition:border-color .2s,background .2s,color .2s}
-.ld-wa svg{width:18px;height:18px;fill:#128C4A;flex:0 0 18px}
-.ld-wa:hover{border-color:#128C4A;background:#F1FAF4}
-@media (max-width:1000px){.ld-grid{grid-template-columns:1fr 1fr}.ld-card:last-child{grid-column:1/-1}}
-@media (max-width:680px){.ld-grid{grid-template-columns:1fr;gap:16px}.ld-card:last-child{grid-column:auto}.ld-card{padding:24px 22px}}
+.ld-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.ld-card{position:relative;background:var(--white);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .4s,transform .4s,border-color .4s}
+.ld-card:hover{transform:translateY(-4px);border-color:rgba(217,169,59,.45);box-shadow:0 34px 60px -40px rgba(10,26,54,.55)}
+.ld-photo{position:relative;aspect-ratio:5/4;overflow:hidden;background:radial-gradient(120% 90% at 85% 0%,rgba(217,169,59,.22),transparent 55%),linear-gradient(160deg,var(--navy-700),var(--navy-900) 70%);display:grid;place-items:center}
+.ld-photo::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:14px 14px;-webkit-mask-image:linear-gradient(180deg,#000,transparent 85%);mask-image:linear-gradient(180deg,#000,transparent 85%)}
+.ld-photo::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.ld-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;transition:transform .6s}
+.ld-card:hover .ld-photo img{transform:scale(1.04)}
+.ld-mono{position:relative;width:112px;height:112px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-weight:500;font-size:34px;letter-spacing:.08em;color:var(--gold);border:1px solid rgba(217,169,59,.5);box-shadow:0 0 0 10px rgba(217,169,59,.06),0 0 0 22px rgba(217,169,59,.035);background:rgba(6,14,31,.35)}
+.ld-body{padding:26px 28px 22px;display:flex;flex-direction:column;flex:1}
+.ld-body h3{font-size:21px;font-weight:600;color:var(--ink);line-height:1.2;letter-spacing:-.015em}
+.ld-role{margin:8px 0 0;font-family:var(--f-display);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;line-height:1.55;color:var(--gold-text)}
+.ld-bio{margin:16px 0 0;font-size:15px;line-height:1.7;color:var(--muted)}
+.ld-tags{margin:auto 0 0;padding-top:18px;display:flex;flex-wrap:nowrap;white-space:nowrap;align-items:center;gap:6px 10px;font-size:13px;font-weight:500;color:var(--navy-700)}
+.ld-dot{width:4px;height:4px;border-radius:50%;background:var(--gold)}
+.ld-wa{display:flex;align-items:center;gap:10px;padding:18px 28px;border-top:1px solid var(--line);font-family:var(--f-display);font-size:14.5px;font-weight:600;color:var(--navy-800);text-decoration:none;background:var(--white);transition:background .25s,color .25s}
+.ld-wa svg:first-child{width:19px;height:19px;fill:#128C4A;flex:0 0 19px}
+.ld-wa span{flex:1}
+.ld-arr{width:18px;height:18px;flex:0 0 18px;color:var(--gold-text);transition:transform .25s}
+.ld-wa:hover{background:#F3FAF5}
+.ld-wa:hover .ld-arr{transform:translateX(4px)}
+@media (max-width:1000px){.ld-grid{grid-template-columns:1fr 1fr}.ld-card:last-child{grid-column:1/-1;max-width:calc(50% - 12px);justify-self:center;width:100%}}
+@media (max-width:680px){.ld-grid{grid-template-columns:1fr;gap:18px}.ld-card:last-child{max-width:none}.ld-photo{aspect-ratio:16/11}.ld-body{padding:22px 22px 20px}.ld-wa{padding:16px 22px}}
 </style>
 </head>
 <body>
@@ -925,22 +931,34 @@ footer .ft-h{font-family:var(--f-display);color:var(--navy-800);font-size:14px;f
       </div>
       <div class="ld-grid">
         <article class="ld-card rv">
-          <div class="ld-top"><span class="ld-mono" aria-hidden="true">PR</span><div><h3>Prathmesh Raichuraa</h3><p class="ld-role">Director, Sales, Strategy &amp; Channel Development</p></div></div>
-          <p class="ld-bio">Over 20 years across banking, lending and financial distribution. Prathmesh has built large sales teams and pan-India DSA and connector networks, and works closely with banks, NBFCs, CA firms and builders to grow lasting partnerships.</p>
-          <ul class="ld-tags"><li>Channel development</li><li>Strategic alliances</li><li>Sales leadership</li></ul>
-          <a class="ld-wa" href="https://wa.me/919978507616?text=Hi%20Prathmesh%2C%20I%20came%20across%20your%20profile%20on%20the%20Centurion%20website%20and%20would%20like%20to%20connect." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zM20.5 3.5A11.8 11.8 0 0 0 1.9 17.7L.2 24l6.4-1.7A11.8 11.8 0 0 0 24 12c0-3.2-1.2-6.1-3.5-8.5z"/></svg>WhatsApp Prathmesh</a>
+          <div class="ld-photo"><span class="ld-mono" aria-hidden="true">PR</span></div>
+          <div class="ld-body">
+            <h3>Prathmesh Raichuraa</h3>
+            <p class="ld-role">Director, Sales, Strategy &amp; Channel Development</p>
+            <p class="ld-bio">Over 20 years in lending with Cholamandalam, IDFC FIRST Bank, Aavas Financiers, Bajaj Finserv, HDFC Bank and GE Money. Prathmesh has led large sales teams and DSA networks across Gujarat and Mumbai.</p>
+            <p class="ld-tags"><span>Channels</span><span class="ld-dot" aria-hidden="true"></span><span>Alliances</span><span class="ld-dot" aria-hidden="true"></span><span>Sales leadership</span></p>
+          </div>
+          <a class="ld-wa" href="https://wa.me/919978507616?text=Hi%20Prathmesh%2C%20I%20came%20across%20your%20profile%20on%20the%20Centurion%20website%20and%20would%20like%20to%20connect." target="_blank" rel="noopener" aria-label="WhatsApp Prathmesh"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zM20.5 3.5A11.8 11.8 0 0 0 1.9 17.7L.2 24l6.4-1.7A11.8 11.8 0 0 0 24 12c0-3.2-1.2-6.1-3.5-8.5z"/></svg><span>Connect with Prathmesh</span><svg class="ld-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </article>
         <article class="ld-card rv">
-          <div class="ld-top"><span class="ld-mono" aria-hidden="true">DU</span><div><h3>Devang Upadhyay</h3><p class="ld-role">Director, Sales &amp; Distribution</p></div></div>
-          <p class="ld-bio">A secured lending and mortgage specialist who has led regional business across Gujarat and Madhya Pradesh. Devang brings deep expertise in Loan Against Property, distribution channels and healthy, profitable portfolios.</p>
-          <ul class="ld-tags"><li>LAP &amp; mortgages</li><li>Regional business</li><li>Risk &amp; compliance</li></ul><p class="ld-prev"><span>Previously with</span>IIFL, Tata Capital, Fullerton India, Aditya Birla, IDFC Bank, Aavas Financiers and HDB Financial Services</p>
-          <a class="ld-wa" href="https://wa.me/919909975844?text=Hi%20Devang%2C%20I%20came%20across%20your%20profile%20on%20the%20Centurion%20website%20and%20would%20like%20to%20connect." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zM20.5 3.5A11.8 11.8 0 0 0 1.9 17.7L.2 24l6.4-1.7A11.8 11.8 0 0 0 24 12c0-3.2-1.2-6.1-3.5-8.5z"/></svg>WhatsApp Devang</a>
+          <div class="ld-photo"><span class="ld-mono" aria-hidden="true">DU</span></div>
+          <div class="ld-body">
+            <h3>Devang Upadhyay</h3>
+            <p class="ld-role">Director, Sales &amp; Distribution</p>
+            <p class="ld-bio">A secured lending and mortgage specialist who has led regional business across Gujarat and Madhya Pradesh with IIFL, Tata Capital, IDFC Bank, Aavas Financiers and other leading lenders.</p>
+            <p class="ld-tags"><span>LAP &amp; mortgages</span><span class="ld-dot" aria-hidden="true"></span><span>Regional growth</span><span class="ld-dot" aria-hidden="true"></span><span>Risk</span></p>
+          </div>
+          <a class="ld-wa" href="https://wa.me/919909975844?text=Hi%20Devang%2C%20I%20came%20across%20your%20profile%20on%20the%20Centurion%20website%20and%20would%20like%20to%20connect." target="_blank" rel="noopener" aria-label="WhatsApp Devang"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zM20.5 3.5A11.8 11.8 0 0 0 1.9 17.7L.2 24l6.4-1.7A11.8 11.8 0 0 0 24 12c0-3.2-1.2-6.1-3.5-8.5z"/></svg><span>Connect with Devang</span><svg class="ld-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </article>
         <article class="ld-card rv">
-          <div class="ld-top"><span class="ld-mono" aria-hidden="true">JB</span><div><h3>Juhi Bais</h3><p class="ld-role">Director, Brand Communications &amp; People Strategy</p></div></div>
-          <p class="ld-bio">Juhi leads brand, communications and people at Centurion. With experience across marketing communications, PR and talent acquisition, she shapes how Centurion speaks to clients and partners, and builds the team behind every relationship.</p>
-          <ul class="ld-tags"><li>Brand strategy</li><li>Communications &amp; PR</li><li>Talent &amp; people</li></ul>
-          <a class="ld-wa" href="https://wa.me/919274705844?text=Hi%20Juhi%2C%20I%20came%20across%20your%20profile%20on%20the%20Centurion%20website%20and%20would%20like%20to%20connect." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zM20.5 3.5A11.8 11.8 0 0 0 1.9 17.7L.2 24l6.4-1.7A11.8 11.8 0 0 0 24 12c0-3.2-1.2-6.1-3.5-8.5z"/></svg>WhatsApp Juhi</a>
+          <div class="ld-photo"><span class="ld-mono" aria-hidden="true">JB</span></div>
+          <div class="ld-body">
+            <h3>Juhi Bais</h3>
+            <p class="ld-role">Director, Brand Communications &amp; People Strategy</p>
+            <p class="ld-bio">Experience across brand communications, business development and HR with Global Solutions Group (US), Inflection Point Ventures, Level Next Digi and EPP Composites. Juhi shapes how Centurion speaks to clients and builds the team behind it.</p>
+            <p class="ld-tags"><span>Brand</span><span class="ld-dot" aria-hidden="true"></span><span>Communications</span><span class="ld-dot" aria-hidden="true"></span><span>People</span></p>
+          </div>
+          <a class="ld-wa" href="https://wa.me/919274705844?text=Hi%20Juhi%2C%20I%20came%20across%20your%20profile%20on%20the%20Centurion%20website%20and%20would%20like%20to%20connect." target="_blank" rel="noopener" aria-label="WhatsApp Juhi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zM20.5 3.5A11.8 11.8 0 0 0 1.9 17.7L.2 24l6.4-1.7A11.8 11.8 0 0 0 24 12c0-3.2-1.2-6.1-3.5-8.5z"/></svg><span>Connect with Juhi</span><svg class="ld-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </article>
       </div>
     </div>
