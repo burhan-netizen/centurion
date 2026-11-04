@@ -849,7 +849,7 @@ footer .ft-h{font-family:var(--f-display);color:var(--navy-800);font-size:14px;f
 .ld-mono{position:relative;width:112px;height:112px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-weight:500;font-size:34px;letter-spacing:.08em;color:var(--gold);border:1px solid rgba(217,169,59,.5);box-shadow:0 0 0 10px rgba(217,169,59,.06),0 0 0 22px rgba(217,169,59,.035);background:rgba(6,14,31,.35)}
 .ld-body{padding:26px 28px 22px;display:flex;flex-direction:column;flex:1}
 .ld-body h3{font-size:21px;font-weight:600;color:var(--ink);line-height:1.2;letter-spacing:-.015em}
-.ld-role{margin:8px 0 0;font-family:var(--f-display);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;line-height:1.55;color:var(--gold-text)}
+.ld-role{min-height:3.1em;margin:8px 0 0;font-family:var(--f-display);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;line-height:1.55;color:var(--gold-text)}
 .ld-bio{margin:16px 0 0;font-size:15px;line-height:1.7;color:var(--muted)}
 .ld-tags{margin:auto 0 0;padding-top:18px;display:flex;flex-wrap:nowrap;white-space:nowrap;align-items:center;gap:6px 10px;font-size:13px;font-weight:500;color:var(--navy-700)}
 .ld-dot{width:4px;height:4px;border-radius:50%;background:var(--gold)}
@@ -920,6 +920,34 @@ footer .ft-h{font-family:var(--f-display);color:var(--navy-800);font-size:14px;f
 .tl.tl4 .tl-step:last-child .tl-num{background:transparent;border-color:var(--gold)}
 @media (max-width:1000px){.tl.tl4{grid-template-columns:1fr 1fr;row-gap:18px}.tl.tl4 .tl-step::after{display:none}}
 @media (max-width:640px){.tl.tl4{grid-template-columns:1fr;gap:12px}.tl.tl4 .tl-step{display:grid;grid-template-columns:52px 1fr;column-gap:16px;row-gap:4px;padding:22px 20px}.tl.tl4 .tl-num{grid-row:span 2;margin:0;align-self:start}.tl.tl4 .tl-step h3{align-self:start;margin-top:12px}}
+
+/* ===== purpose: vision, mission, values ===== */
+.purpose{background:var(--white)}
+.pv-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pv-card{position:relative;border-radius:24px;padding:clamp(28px,3.4vw,40px);display:grid;gap:12px;align-content:start;overflow:hidden}
+.pv-vision{background:radial-gradient(420px 260px at 100% 0%,rgba(217,169,59,.18),transparent 70%),linear-gradient(160deg,var(--navy-700),var(--navy-900));color:var(--on-dark)}
+.pv-mission{background:var(--paper);border:1px solid var(--line)}
+.pv-card .pv-ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;margin-bottom:6px}
+.pv-vision .pv-ic{background:rgba(217,169,59,.12);border:1px solid rgba(217,169,59,.4)}
+.pv-mission .pv-ic{background:var(--navy-800)}
+.pv-ic svg{width:22px;height:22px;fill:none;stroke:var(--gold);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.pv-k{margin:0;font-family:var(--f-display);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.pv-vision .pv-k{color:var(--gold)}
+.pv-mission .pv-k{color:var(--gold-text)}
+.pv-t{margin:0;font-family:var(--f-display);font-size:clamp(18px,1.7vw,21px);line-height:1.5;font-weight:500;letter-spacing:-.01em}
+.pv-vision .pv-t{color:var(--white)}
+.pv-mission .pv-t{color:var(--ink)}
+.pv-label{margin:clamp(40px,5vw,56px) 0 18px;font-family:var(--f-display);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-text);display:flex;align-items:center;gap:14px}
+.pv-label::after{content:"";flex:1;height:1px;background:var(--line)}
+.pv-vals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--white)}
+.pv-val{padding:26px 24px 24px;display:grid;gap:8px;align-content:start;border-left:1px solid var(--line)}
+.pv-val:first-child{border-left:0}
+.pv-val .pv-ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:#FBF6E9;border:1px solid #F0DFAE;margin-bottom:6px}
+.pv-val .pv-ic svg{stroke:var(--gold-text);width:20px;height:20px}
+.pv-val h3{font-size:17px;font-weight:600;color:var(--ink)}
+.pv-val p{margin:0;font-size:14.5px;line-height:1.6;color:var(--muted)}
+@media (max-width:1000px){.pv-vals{grid-template-columns:1fr 1fr}.pv-val:nth-child(3){border-left:0}.pv-val:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:680px){.pv-grid{grid-template-columns:1fr}.pv-vals{grid-template-columns:1fr}.pv-val{border-left:0}.pv-val+.pv-val{border-top:1px solid var(--line)}}
 </style>
 </head>
 <body>
@@ -985,6 +1013,36 @@ footer .ft-h{font-family:var(--f-display);color:var(--navy-800);font-size:14px;f
     </div>
   </section>
 
+
+  <!-- PURPOSE -->
+  <section class="sec purpose" id="purpose">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">Our Purpose</p>
+        <h2 class="h2">Empowering growth through smart capital.</h2>
+        <p class="lead">Strategic thinking and sustainable growth guide every decision we make, for our clients, our partners and our lenders.</p>
+      </div>
+      <div class="pv-grid">
+        <article class="pv-card pv-vision rv">
+          <span class="pv-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <p class="pv-k">Our Vision</p>
+          <p class="pv-t">To be India's most trusted strategic finance partner, empowering businesses, professionals and families to grow through smart, responsible capital.</p>
+        </article>
+        <article class="pv-card pv-mission rv">
+          <span class="pv-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg></span>
+          <p class="pv-k">Our Mission</p>
+          <p class="pv-t">To connect every client with the right funding through 100+ banks and NBFCs, with expert structuring, transparent dealings and end-to-end support, while promoting financial discipline and healthy credit.</p>
+        </article>
+      </div>
+      <p class="pv-label rv">Our core values</p>
+      <div class="pv-vals">
+          <div class="pv-val rv"><span class="pv-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><h3>Trust</h3><p>Long-term relationships with clients, partners and lenders, built on integrity and honest advice.</p></div>
+          <div class="pv-val rv"><span class="pv-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><h3>Transparency</h3><p>Clear terms, clear communication and no hidden surprises at any stage.</p></div>
+          <div class="pv-val rv"><span class="pv-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg></span><h3>Customised solutions</h3><p>Every facility structured around your cash flows and objectives, never one-size-fits-all.</p></div>
+          <div class="pv-val rv"><span class="pv-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><h3>Faster approvals</h3><p>Lender-ready files and the right lender match for quicker decisions and smoother disbursement.</p></div>
+      </div>
+    </div>
+  </section>
 
   <!-- SOLUTIONS -->
   <section class="sec solutions" id="solutions">
@@ -1104,7 +1162,7 @@ footer .ft-h{font-family:var(--f-display);color:var(--navy-800);font-size:14px;f
           <div class="ld-body">
             <h3>Devang Upadhyay</h3>
             <p class="ld-role">Director, Sales &amp; Distribution</p>
-            <p class="ld-bio">A secured lending and mortgage specialist who has led regional business across Gujarat and Madhya Pradesh with IIFL, Tata Capital, IDFC Bank, Aavas Financiers and other leading lenders.</p>
+            <p class="ld-bio">A secured lending and mortgage specialist with leadership roles at IIFL, Tata Capital, IDFC Bank, Aavas Financiers and HDB Financial Services. He has led regional business in Gujarat and Madhya Pradesh.</p>
             <p class="ld-tags"><span>LAP &amp; mortgages</span><span class="ld-dot" aria-hidden="true"></span><span>Regional growth</span><span class="ld-dot" aria-hidden="true"></span><span>Risk</span></p>
           </div>
           <a class="ld-wa" href="https://wa.me/919909975844?text=Hi%20Devang%2C%20I%20came%20across%20your%20profile%20on%20the%20Centurion%20website%20and%20would%20like%20to%20connect." target="_blank" rel="noopener" aria-label="WhatsApp Devang"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zM20.5 3.5A11.8 11.8 0 0 0 1.9 17.7L.2 24l6.4-1.7A11.8 11.8 0 0 0 24 12c0-3.2-1.2-6.1-3.5-8.5z"/></svg><span>Connect with Devang</span><svg class="ld-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -1114,7 +1172,7 @@ footer .ft-h{font-family:var(--f-display);color:var(--navy-800);font-size:14px;f
           <div class="ld-body">
             <h3>Juhi Bais</h3>
             <p class="ld-role">Director, Brand Communications &amp; People Strategy</p>
-            <p class="ld-bio">Experience across brand communications, business development and HR with Global Solutions Group (US), Inflection Point Ventures, Level Next Digi and EPP Composites. Juhi shapes how Centurion speaks to clients and builds the team behind it.</p>
+            <p class="ld-bio">Brand communications, business development and HR experience with Global Solutions Group (US), Inflection Point Ventures, Level Next Digi and EPP Composites. Juhi leads Centurion's brand and people.</p>
             <p class="ld-tags"><span>Brand</span><span class="ld-dot" aria-hidden="true"></span><span>Communications</span><span class="ld-dot" aria-hidden="true"></span><span>People</span></p>
           </div>
           <a class="ld-wa" href="https://wa.me/919274705844?text=Hi%20Juhi%2C%20I%20came%20across%20your%20profile%20on%20the%20Centurion%20website%20and%20would%20like%20to%20connect." target="_blank" rel="noopener" aria-label="WhatsApp Juhi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zM20.5 3.5A11.8 11.8 0 0 0 1.9 17.7L.2 24l6.4-1.7A11.8 11.8 0 0 0 24 12c0-3.2-1.2-6.1-3.5-8.5z"/></svg><span>Connect with Juhi</span><svg class="ld-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -1202,7 +1260,7 @@ footer .ft-h{font-family:var(--f-display);color:var(--navy-800);font-size:14px;f
     </div>
     <div>
       <h3 class="ft-h">Company</h3>
-      <ul><li><a href="#about">About</a></li><li><a href="#leadership">Leadership</a></li><li><a href="#why">Why Centurion</a></li><li><a href="#partners">Partner With Us</a></li><li><a href="#faq">FAQs</a></li></ul>
+      <ul><li><a href="#about">About</a></li><li><a href="#purpose">Vision &amp; Mission</a></li><li><a href="#leadership">Leadership</a></li><li><a href="#why">Why Centurion</a></li><li><a href="#partners">Partner With Us</a></li><li><a href="#faq">FAQs</a></li></ul>
     </div>
     <div>
       <h3 class="ft-h">Contact</h3>
