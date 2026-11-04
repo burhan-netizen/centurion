@@ -13,7 +13,8 @@
 //   SHEET_WEBHOOK_URL     Google Apps Script web app URL (optional until set up)
 //   SHEET_SECRET          shared secret that the sheet script checks
 //   SITE_URL              e.g. https://YOURDOMAIN.in (used for the logo in emails)
-//   WHATSAPP_NUMBER       e.g. 919274705844
+//   WHATSAPP_CUSTOMER     optional, defaults to 919909975844 (customer enquiries)
+//   WHATSAPP_PARTNER      optional, defaults to 919978507616 (partner enquiries)
 
 const { customerEmail, partnerEmail, internalEmail } = require("./_emails");
 
@@ -73,7 +74,9 @@ module.exports = async function handler(req, res) {
 
   const ctx = {
     site: (process.env.SITE_URL || "").replace(/\/$/, ""),
-    whatsapp: process.env.WHATSAPP_NUMBER || "919274705844",
+    whatsapp: type === "partner"
+      ? (process.env.WHATSAPP_PARTNER || "919978507616")
+      : (process.env.WHATSAPP_CUSTOMER || "919909975844"),
   };
   const inbox = type === "partner" ? process.env.PARTNER_INBOX : process.env.CUSTOMER_INBOX;
   const internal = internalEmail(lead, ctx);
